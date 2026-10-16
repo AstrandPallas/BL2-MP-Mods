@@ -24,8 +24,10 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | 4-pin SMT pogo connector | Not placed yet (see "Still to confirm") |
 | Saberbay 1" thin-walled 36" neopixel blade | Main blade, 130 LEDs (Saberbay's formula: 36 ÷ 40 × 144 ≈ 130) |
 | Aluminum hero NeoPixel blade plug + 4× 2 mm magnets | Goes in the blade holder when the blade is out. Lit by the NPXL's 16 LEDs |
-
-**Not in the list:** the two momentary buttons and the wire. If the buttons come with the MoM hilt or helper board, you're set. For wire, Shtok's diagrams use 24 AWG (or thicker, 20–22 AWG) for + and − to the blade, and 28–34 AWG for data and button wires.
+| 2 small tactile switches (in the parts photo) | The Power and Aux buttons. With 4 legs, use two **diagonally opposite** legs; legs on the same side can be joined inside |
+| 3-pin slide switch (in the parts photo) | Not in the wiring yet. Could be a kill switch (see "Still to confirm") |
+| Small round board marked BLADE, with a few LEDs (in the parts photo) | A blade-side connector board. It goes inside a blade or plug and touches the NPXL pins, so it never wires to the Proffieboard |
+| Silicone wire assortment (in the parts photo) | Shtok's diagrams use 24 AWG (or thicker, 20–22 AWG) for + and − to the blade, and 28–34 AWG for data and button wires |
 
 ## Configurator settings
 
@@ -103,6 +105,7 @@ If the buttons don't actually pass through the rotary connector in the MoM hilt,
 
 - **Helper board V2:** this is the MoM kit's FX helper board. I couldn't find its layout or pad labels online. Send photos of both sides. It may replace some of the wires above (likely the buttons or the rotary connector), and I'll map its pads onto this list.
 - **Bluetooth board:** your BT909 is on a breakout with all its pins at one end, so it won't look like the bare module in the diagram. Match by the printed labels: GND → BATT−, VCC/3V3 → SDVDD, TX → RX, RX → TX. Leave any extra pins (STATE, EN, KEY) unconnected. If the power pin says **5V or VIN** instead of 3.3 V, check before wiring it.
+- **Slide switch:** if it's going in as a kill switch, the configurator wires battery + to an end pin and the middle pin to BATT+, leaving the third pin unused. Wired that way, the whole blade current goes through the switch, and a full-white blade can draw more than a small slide switch is rated for. Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) shows a low-current alternative: cut the BATT−/GND bridge and switch only the board.
 - **4-pin SMT pogo connector:** if this makes the crystal chamber removable, three of its pins would carry crystal +, − and data, with one spare. Tell me where it goes and I'll add it.
 
 ## Config (`out/mom/config.h`)
