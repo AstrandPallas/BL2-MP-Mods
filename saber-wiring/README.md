@@ -52,6 +52,8 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 
 ## Wiring the Proffieboard: thick or thin
 
+![Proffieboard pads marked on the actual board](out/mom/proffie-pads.png)
+
 Use **thick** wire only where the blade's current flows: the battery in and out, and the blade's + and −. Everything else gets **thin** wire. Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) says most pads carry almost no current and can use 30 AWG, but the battery wires carry the combined current of every LED. Shtok's NPXL manual asks for 20–22 AWG on the blade's + and −.
 
 | Proffieboard pad | Wire | Runs to | Notes |
@@ -148,7 +150,7 @@ Once the checks are done, LED1 and LED2 go into the config as two plain LEDs on 
 ## Still to confirm
 
 - **Helper board:** the four checks above, and whether Veracity's v4.1 is the chassis designer's V2.
-- **Bluetooth board:** your BT909 is on a breakout with all its pins at one end, so it won't look like the bare module in the diagram. Match by the printed labels: GND → BATT−, VCC/3V3 → SDVDD, TX → RX, RX → TX. Leave any extra pins (STATE, EN, KEY) unconnected. If the power pin says **5V or VIN** instead of 3.3 V, check before wiring it.
+- **Bluetooth board:** your BT909 is on a breakout with 7 pads at one end, so it won't look like the bare module in the diagram. The pads have no labels on the module side; they're probably printed on the back. Match by those labels: GND → BATT−, VCC/3V3 → SDVDD, TX → RX, RX → TX. Leave any extra pins (STATE, EN, KEY) unconnected. If the power pin says **5V or VIN** instead of 3.3 V, check before wiring it.
 - **Slide switch:** if it's going in as a kill switch, the configurator wires battery + to an end pin and the middle pin to BATT+, leaving the third pin unused. Wired that way, the whole blade current goes through the switch, and a full-white blade can draw more than a small slide switch is rated for. Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) shows a low-current alternative: cut the BATT−/GND bridge and switch only the board.
 - **4-pin SMT pogo connector:** if this makes the crystal chamber removable, three of its pins would carry crystal +, − and data, with one spare. Tell me where it goes and I'll add it.
 
