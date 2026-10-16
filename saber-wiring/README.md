@@ -20,13 +20,14 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | Shtok Rotary NeoPixel & 2 Button PCB connector set (1 set) | Joins the removable chassis to the hilt. Carries power, blade data, connector-LED data and both buttons |
 | Shtok NPXL V4 hilt-side connector + 1" holder | Where the blade plugs in. Has 16 LEDs of its own that light the hero blade plug. There are two in the parts photos; Mom's build uses one |
 | Shtok Battery and Speaker PCB Connector Set (BAT_M + BAT_F, in the parts photos) | Not in the wiring plan and not on the order list. It joins a removable battery-and-speaker section to the chassis, carrying battery +/− and speaker +/− ([listing](https://thesaberarmory.com/products/shtokcustomworx-battery-and-speaker-pcb-connector-set)). It's only needed if the MoM chassis splits there; otherwise it's spare. No Proffieboard pad changes either way |
-| 330 Ω resistor | In series on the **crystal chamber** data wire |
+| 330 Ω resistor (surface-mount chip marked "331", on a paper strip) | In series on the **crystal chamber** data wire (Data3). Tin both ends, solder the Data3 wire to one end and the crystal's DIN wire to the other, then cover it with heat shrink |
 | WS2812 mini strip (cut 2–4 LEDs off) | Crystal chamber light |
 | 4-pin SMT pogo connector | Not placed yet (see "Still to confirm") |
 | Saberbay 1" thin-walled 36" neopixel blade | Main blade, 130 LEDs (Saberbay's formula: 36 ÷ 40 × 144 ≈ 130) |
 | Aluminum hero NeoPixel blade plug + 4× 2 mm magnets | Goes in the blade holder when the blade is out. Lit by the NPXL's 16 LEDs |
 | 2 small tactile switches (in the parts photo) | Probably spares, since the helper board has its own two switches. If you use them, wire two **diagonally opposite** legs; legs on the same side can be joined inside |
-| 3-pin slide switch (in the parts photo) | Not in the wiring yet. Could be a kill switch (see "Still to confirm") |
+| 3-pin slide switch, silver, marked "3A 120VAC" | Not in the wiring yet. The kill-switch type Hubbe's configurator draws. Optional, since the battery comes out to charge. Check 2 shows whether the helper board's U$2 pads are meant for it (see "Still to confirm") |
+| Mini black 3-pin slide switch | Not in the wiring yet. Low-current only, never in the blade's power line. Fits Hubbe's low-current switch method, or an on/off switch in the Bluetooth board's +3.3V wire (Shtok's Bluetooth diagram shows one as optional) |
 | Small round board marked BLADE, with 5 LEDs (in the parts photo) | Shtok NPXL blade-side connector board, LED version (5 built-in SK6812 pixels). Most likely the light inside the hero blade plug. It touches the NPXL pins and runs off blade data, so it doesn't need any wires |
 | 4 loose gold pins (in the parts photo) | Pogo pins, probably the rest of the rotary set's 12 pins for the CHC_M board |
 | Thick and thin wire | See "Wiring the Proffieboard" for which wire goes on which pad |
@@ -76,12 +77,9 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 | **SPKR+ / SPKR−** | Thin | Speaker | Under 1 A even at full volume (3 W into 4 Ω) |
 | **LED4 / LED5** | Thin | Helper **LED1− / LED2−** | Optional, after check 3. Only works if the helper board is on the Proffieboard's side of the rotary connector, because the rotary has no spare contacts |
 
-Two + wires don't go on the Proffieboard at all: **blade +** (thick, to rotary **+** → NPXL **+**) and **crystal +** (thin). Every battery + point in the saber is electrically the same. Solder these two at the far end of the thick BATT+ wire, wherever it finishes:
+Two + wires don't go on the Proffieboard at all: **blade +** (thick, to rotary **+** → NPXL **+**) and **crystal +** (thin). Solder both at the **battery's + contact**. Shtok's rotary diagram feeds the blade + straight from the battery the same way, and it keeps the small BATT+ pad down to one wire.
 
-- At the battery's + contact, or
-- At the helper board's BRD+ pad, if check 2 shows the helper sits in the battery line. That way a switch on the helper cuts them too.
-
-Shtok's rotary diagram feeds the blade + straight from the battery the same way. It also keeps the small BATT+ pad down to one wire.
+Keep blade + on the battery side even if check 2 finds a switch between the helper's BATT+ and BRD+. The slide switch is rated 3 A and the blade can draw more than that. Wired this way, the switch only carries the board's own current. The blade still goes dark when the switch is off: blade − runs through the board's LED2/LED3 switches, and Hubbe's V3 page notes those have pull-down resistors that turn them off when the board has no power.
 
 **Use stranded wire for the final install, not solid core.** Solid wire is stiff. It pries at the pads, and wires that bend repeatedly (removable chassis, battery swaps, clashes) tend to crack next to the solder joint. Silicone or PTFE stranded wire is the usual choice; Shtok pre-wires its NPXL connectors with PTFE, 22 AWG for + and −. The 22 AWG solid-core box is fine for a bench test. For the four thick wires in the saber, get about 1 m (3 ft) each of red and black 22 AWG stranded.
 
@@ -185,7 +183,7 @@ Once the checks are done, LED1 and LED2 go into the config as two plain LEDs on 
 ## Still to confirm
 
 - **Helper board:** the four checks above, and whether Veracity's v4.1 is the chassis designer's V2.
-- **Slide switch:** if it's going in as a kill switch, the configurator wires battery + to an end pin and the middle pin to BATT+, leaving the third pin unused. Wired that way, the whole blade current goes through the switch, and a full-white blade can draw more than a small slide switch is rated for. Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) shows a low-current alternative: cut the BATT−/GND bridge and switch only the board.
+- **Slide switches:** a kill switch is optional, since the battery comes out to charge. If the 3 A switch goes in, it must not carry the blade current. Either put it between the helper's BATT+ and BRD+ (if check 2 says U$2 is for it), with blade + taken from the battery side as described above, or use Hubbe's [low-current switch method](https://fredrik.hubbe.net/lightsaber/v6/): cut the BATT−/GND bridge and switch only the board. That method also suits the mini switch. The configurator's own kill-switch drawing puts the switch in the main battery + line, which would carry the full blade current.
 - **4-pin SMT pogo connector:** if this makes the crystal chamber removable, three of its pins would carry crystal +, − and data, with one spare. Tell me where it goes and I'll add it.
 
 ## Config (`out/mom/config.h`)
