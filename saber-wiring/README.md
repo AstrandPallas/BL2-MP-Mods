@@ -26,7 +26,8 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | Aluminum hero NeoPixel blade plug + 4× 2 mm magnets | Goes in the blade holder when the blade is out. Lit by the NPXL's 16 LEDs |
 | 2 small tactile switches (in the parts photo) | Probably spares, since the helper board has its own two switches. If you use them, wire two **diagonally opposite** legs; legs on the same side can be joined inside |
 | 3-pin slide switch (in the parts photo) | Not in the wiring yet. Could be a kill switch (see "Still to confirm") |
-| Small round board marked BLADE, with a few LEDs (in the parts photo) | A blade-side connector board. It goes inside a blade or plug and touches the NPXL pins, so it never wires to the Proffieboard |
+| Small round board marked BLADE, with 5 LEDs (in the parts photo) | Shtok NPXL blade-side connector board, LED version (5 built-in SK6812 pixels). Most likely the light inside the hero blade plug. It touches the NPXL pins and runs off blade data, so it doesn't need any wires |
+| 4 loose gold pins (in the parts photo) | Pogo pins, probably the rest of the rotary set's 12 pins for the CHC_M board |
 | Silicone wire assortment (in the parts photo) | Shtok's diagrams use 24 AWG (or thicker, 20–22 AWG) for + and − to the blade, and 28–34 AWG for data and button wires |
 
 ## Configurator settings
