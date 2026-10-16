@@ -82,6 +82,21 @@ Two + wires don't go on the Proffieboard at all: **blade +** (thick, to rotary *
 
 Shtok's rotary diagram feeds the blade + straight from the battery the same way. It also keeps the small BATT+ pad down to one wire.
 
+**Use stranded wire for the final install, not solid core.** Solid wire is stiff. It pries at the pads, and wires that bend repeatedly (removable chassis, battery swaps, clashes) tend to crack next to the solder joint. Silicone or PTFE stranded wire is the usual choice; Shtok pre-wires its NPXL connectors with PTFE, 22 AWG for + and −. The 22 AWG solid-core box is fine for a bench test. For the four thick wires in the saber, get about 1 m (3 ft) each of red and black 22 AWG stranded.
+
+Colour plan for six colours. Within a colour, flag each wire with a strip of masking tape at the far end:
+
+| Colour | Wires |
+| --- | --- |
+| Red (thick) | Battery + (BATT+), blade + |
+| Black (thick) | Battery − (BATT−), blade − (LED2 + LED3) |
+| Red (thin) | Crystal +, Bluetooth + (SDVDD) |
+| Black (thin) | Both GND wires, LED1 (crystal −), LED4, LED5 |
+| White | Data1, Data2, Data3 |
+| Green | BT1, BT2 |
+| Yellow | SPKR+, SPKR− |
+| Blue | RX, TX |
+
 Tips for long wires you'll trim later:
 
 - **Length:** the chassis-side wires only need to reach the rotary connector's pin board (CHC_M), not the emitter. The hilt side gets its own short wires from the ring board (CHC_F). Cut each wire to reach the far end of the chassis plus about 5 cm (2"). If you can't measure yet, 20 cm (8") each is plenty.
