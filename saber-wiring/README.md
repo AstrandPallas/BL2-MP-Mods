@@ -18,7 +18,8 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | Spring battery contacts | Hold the battery; it comes out to charge |
 | 2 A charger | External, shared. There's no charge port or kill switch in this build |
 | Shtok Rotary NeoPixel & 2 Button PCB connector set (1 set) | Joins the removable chassis to the hilt. Carries power, blade data, connector-LED data and both buttons |
-| Shtok NPXL V4 hilt-side connector + 1" holder | Where the blade plugs in. Has 16 LEDs of its own that light the hero blade plug |
+| Shtok NPXL V4 hilt-side connector + 1" holder | Where the blade plugs in. Has 16 LEDs of its own that light the hero blade plug. There are two in the parts photos; Mom's build uses one |
+| Shtok Battery and Speaker PCB Connector Set (BAT_M + BAT_F, in the parts photos) | Not in the wiring plan and not on the order list. It joins a removable battery-and-speaker section to the chassis, carrying battery +/− and speaker +/− ([listing](https://thesaberarmory.com/products/shtokcustomworx-battery-and-speaker-pcb-connector-set)). It's only needed if the MoM chassis splits there; otherwise it's spare. No Proffieboard pad changes either way |
 | 330 Ω resistor | In series on the **crystal chamber** data wire |
 | WS2812 mini strip (cut 2–4 LEDs off) | Crystal chamber light |
 | 4-pin SMT pogo connector | Not placed yet (see "Still to confirm") |
