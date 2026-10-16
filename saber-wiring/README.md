@@ -10,7 +10,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | --- | --- |
 | MoM hilt | The hilt |
 | BRrogers crystal chamber | Lit by 2–4 LEDs cut from the WS2812 mini strip |
-| MoM FX helper board V2 | Sits in the control box. Carries the two buttons (side-push switches pressed by the box buttons) and two small LEDs. See "MoM FX helper board V2" below |
+| MoM FX helper board (Veracity calls it v4.1) | Sits in the control box behind the green reveal board. Carries the two buttons (side-push switches pressed by the box buttons) and two plain LEDs. See "MoM FX helper board" below |
 | Proffieboard V3.9 + SD card | Sound board. The diagram photo is a V3.7; the configurator covers the V3 family |
 | FSC-BT909 Bluetooth module | Bluetooth, on the board's RX/TX pads |
 | 28 mm 4 Ω 3 W bass speaker | SPKR+ / SPKR− |
@@ -28,7 +28,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | 3-pin slide switch (in the parts photo) | Not in the wiring yet. Could be a kill switch (see "Still to confirm") |
 | Small round board marked BLADE, with 5 LEDs (in the parts photo) | Shtok NPXL blade-side connector board, LED version (5 built-in SK6812 pixels). Most likely the light inside the hero blade plug. It touches the NPXL pins and runs off blade data, so it doesn't need any wires |
 | 4 loose gold pins (in the parts photo) | Pogo pins, probably the rest of the rotary set's 12 pins for the CHC_M board |
-| Silicone wire assortment (in the parts photo) | Shtok's diagrams use 24 AWG (or thicker, 20–22 AWG) for + and − to the blade, and 28–34 AWG for data and button wires |
+| Thick and thin wire | See "Wiring the Proffieboard" for which wire goes on which pad |
 
 ## Configurator settings
 
@@ -50,23 +50,36 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 
 ![Mom's wiring diagram](out/mom/diagram.png)
 
-## Wire list: Proffieboard pads
+## Wiring the Proffieboard: thick or thin
 
-| Proffieboard pad | Goes to | Notes |
-| --- | --- | --- |
-| **BATT+** | Battery +, NPXL **+**, crystal chamber **+** | Thick wire for the battery and blade |
-| **BATT−** | Battery −, one leg of **both** buttons, BT909 **GND** | Buttons switch to ground |
-| **LED2 + LED3** (bridged together) | NPXL **−** | Blade and connector-LED negative. Thick wire |
-| **LED1** | Crystal chamber **−** | |
-| **Data1** | NPXL **D1** (blade data) | Data1 has a 470 Ω resistor built in, so no extra resistor |
-| **Data2** | NPXL **D2** (the connector's 16 LEDs) | The NPXL has its own 330 Ω (R2) on D2 |
-| **Data3** | **330 Ω resistor** → crystal chamber **data in** | Data2–4 have no built-in resistor. The configurator labels it 470 Ω; your 330 Ω does the same job |
-| **BT1** (Button1) | Power button, other leg | |
-| **BT2** (Button2) | Aux button, other leg | |
-| **RX** | BT909 **TX** | TX and RX cross over |
-| **TX** | BT909 **RX** | |
-| **SDVDD** | BT909 **+ / VCC** | Switched 3.3 V |
-| **SPKR+ / SPKR−** | Speaker | |
+Use **thick** wire only where the blade's current flows: the battery in and out, and the blade's + and −. Everything else gets **thin** wire. Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) says most pads carry almost no current and can use 30 AWG, but the battery wires carry the combined current of every LED. Shtok's NPXL manual asks for 20–22 AWG on the blade's + and −.
+
+| Proffieboard pad | Wire | Runs to | Notes |
+| --- | --- | --- | --- |
+| **BATT+** | **Thick** | Battery + | Through the helper board's BATT+ → BRD+ if check 2 says it's in the battery line |
+| **BATT+** | **Thick** | Blade +: rotary **+** → NPXL **+** | A second thick wire on the same pad. If that's too crowded, take blade + straight from the battery's + contact; Shtok's rotary diagram does it that way |
+| **BATT+** | Thin | Crystal chamber **+** | A few LEDs draw very little |
+| **BATT−** | **Thick** | Battery − | Every LED's current comes back through here |
+| **LED2 + LED3** | **Thick** | Blade −: rotary **−** → NPXL **−** | The two pads are next to each other. Strip enough wire to lay across both and solder them together |
+| **GND** | Thin | Shared leg of both buttons: rotary **GND** → helper **GND** | GND and BATT− are joined on the board, so any GND or BATT− pad works |
+| **GND** | Thin | BT909 **GND** | |
+| **Data1** | Thin | Rotary **Data** → NPXL **D1** (blade) | Data1 has a 470 Ω resistor built in, so no extra resistor |
+| **Data2** | Thin | Rotary **ID** → NPXL **D2** (connector's 16 LEDs) | The NPXL has its own 330 Ω (R2) on D2 |
+| **Data3** | Thin | **330 Ω resistor** → crystal **DIN** | Data2–4 have no built-in resistor. Slide heat shrink over the resistor |
+| **LED1** | Thin | Crystal chamber **−** | |
+| **BT1** | Thin | Rotary **B1** → helper **SW1+** (power) | |
+| **BT2** | Thin | Rotary **B2** → helper **SW2+** (aux) | |
+| **RX** | Thin | BT909 **TX** | TX and RX cross over |
+| **TX** | Thin | BT909 **RX** | |
+| **SDVDD** | Thin | BT909 **+ / VCC** | Switched 3.3 V |
+| **SPKR+ / SPKR−** | Thin | Speaker | Under 1 A even at full volume (3 W into 4 Ω) |
+| **LED4 / LED5** | Thin | Helper **LED1− / LED2−** | Optional, after check 3. Easy to add now and trim later |
+
+Tips for long wires you'll trim later:
+
+- Use red and black for the thick + and − wires.
+- Give each thin wire a different colour and write down which colour is on which pad. Once the wires are trimmed and bundled, that list is the only way to tell them apart.
+- Tin the pads and the wire ends before you join them.
 
 On the crystal strip, use the end whose arrows point away from the wire (DIN), and connect the strip's 5V/+, DIN and GND/− pads.
 
@@ -102,9 +115,11 @@ This set has one data contact plus an **ID** contact. The blade and the connecto
 
 If the buttons don't actually pass through the rotary connector in the MoM hilt, B1 and B2 are free. You could then turn Blade Detect on and run BD to the Free1 pad.
 
-## MoM FX helper board V2
+## MoM FX helper board
 
-The helper board sits in the control box behind the decorative reveal card. The control-box buttons press its two side-mounted switches, per BRrogers's [assembly thread](https://www.therpf.com/forums/threads/fx-reveal-board-assembly-for-fx-mom-cave-hero.339167). I couldn't find a wiring guide for it, so this mapping comes from its printed labels. Run the checks below before soldering.
+Veracity calls this board **v4.1**. The "V1" and "V2" on the chassis page are the chassis designer's labels, and I found nothing that connects them to Veracity's version numbers. The designer describes V2 as having plain LEDs, which matches this board, but that doesn't confirm v4.1 is V2.
+
+The board sits in the control box behind the green reveal board. The control-box buttons press its two side-mounted switches, per BRrogers's [assembly thread](https://www.therpf.com/forums/threads/fx-reveal-board-assembly-for-fx-mom-cave-hero.339167). I couldn't find a wiring guide for it, so this mapping comes from its printed labels. Run the checks below before soldering.
 
 | Helper board pad | Proffieboard pad | How sure |
 | --- | --- | --- |
@@ -113,9 +128,9 @@ The helper board sits in the control box behind the decorative reveal card. The 
 | **GND** | BATT− | Likely. Common for both switches |
 | **BATT+** | Battery + | Likely |
 | **BRD+** | BATT+ | Run check 2 |
-| **LED1−** | LED4 | Run check 3. Negative of the board's LED1 |
-| **LED2−** | LED5 | Run check 3 |
-| **DATA1 / DATA2** | A free data pad (Data4 or Free1–3) | Run check 4 |
+| **LED1−** | LED4 | Run check 3. Negative of the board's plain LED1. R1 is probably its resistor |
+| **LED2−** | LED5 | Run check 3. R2 is probably LED2's resistor |
+| **DATA1 / DATA2** | Leave unconnected for now | Run check 4. Plain LEDs don't take data, so these do something else |
 
 If the helper board is on the far side of the rotary connector, SW1+, SW2+ and GND go through its B1, B2 and GND rings.
 
@@ -126,13 +141,13 @@ Checks, using a multimeter in continuity (beep) mode with nothing connected:
    - If it beeps, they're joined, probably through F1 as a fuse. Run battery + to BATT+, and BRD+ to the Proffieboard's BATT+.
    - If it doesn't beep, see whether BATT+ and BRD+ each beep to one of the three big **U$2** pads. If they do, U$2 is probably where the 3-pin slide switch (kill switch) goes.
 3. **LEDs:** **LED1−** should beep to a pad of the white part marked LED1. **LED2−** should do the same with LED2.
-4. **Data:** test **DATA1** and **DATA2** against the LED1 and LED2 parts, either directly or through R1 and R2. If they connect, the two LEDs are addressable side-view pixels and each needs a data wire. The small capacitors beside each LED suggest that's the case.
+4. **Data:** find out where **DATA1** and **DATA2** go. Test each one against the three **U$2** pads and the other parts on the board. They may just pass through to something else. Nothing in this build needs them: the blade, connector LEDs and crystal all have their own data wires.
 
-Once the checks are done, LED1 and LED2 get added to the config as two more blades. That means two more styles in every preset.
+Once the checks are done, LED1 and LED2 go into the config as two plain LEDs on LED4 and LED5. That adds two more blades, so every preset needs two more styles.
 
 ## Still to confirm
 
-- **Helper board V2:** the four checks above.
+- **Helper board:** the four checks above, and whether Veracity's v4.1 is the chassis designer's V2.
 - **Bluetooth board:** your BT909 is on a breakout with all its pins at one end, so it won't look like the bare module in the diagram. Match by the printed labels: GND → BATT−, VCC/3V3 → SDVDD, TX → RX, RX → TX. Leave any extra pins (STATE, EN, KEY) unconnected. If the power pin says **5V or VIN** instead of 3.3 V, check before wiring it.
 - **Slide switch:** if it's going in as a kill switch, the configurator wires battery + to an end pin and the middle pin to BATT+, leaving the third pin unused. Wired that way, the whole blade current goes through the switch, and a full-white blade can draw more than a small slide switch is rated for. Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) shows a low-current alternative: cut the BATT−/GND bridge and switch only the board.
 - **4-pin SMT pogo connector:** if this makes the crystal chamber removable, three of its pins would carry crystal +, − and data, with one spare. Tell me where it goes and I'll add it.
