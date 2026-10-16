@@ -194,7 +194,15 @@ The board sits in the control box behind the green reveal board. The control-box
 | **LED2−** | LED5 | Run check 3. R2 is probably LED2's resistor |
 | **DATA1 / DATA2** | Leave unconnected for now | Run check 4. Plain LEDs don't take data, so these do something else |
 
-If the helper board is on the far side of the rotary connector, SW1+, SW2+ and GND go through its B1, B2 and GND rings.
+How SW1+, SW2+ and GND reach the Proffieboard depends on where the helper board sits when the chassis comes out:
+
+| Helper board | Route for BT1, BT2 and GND |
+| --- | --- |
+| Comes out with the chassis | Straight wires, Proffieboard to helper board |
+| Stays in the hilt, joined by the 4-pin pogo connector (your notes mention the chassis routing the kill switch through "the helper board's pogo pin 1") | Through the 4-pin pogo connector |
+| Stays in the hilt, no pogo connector | Through the rotary's B1, B2 and GND rings, then three short wires from the ring board (CHC_F) to the helper board |
+
+In the first two cases the rotary's B1, B2 and GND rings are free, so blade detect could use one of them.
 
 Checks, using a multimeter in continuity (beep) mode with nothing connected:
 
