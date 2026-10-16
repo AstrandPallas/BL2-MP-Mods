@@ -12,7 +12,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | BRrogers crystal chamber | Lit by 2–4 LEDs cut from the WS2812 mini strip |
 | MoM FX helper board (Veracity calls it v4.1) | Sits in the control box behind the green reveal board. Carries the two buttons (side-push switches pressed by the box buttons) and two plain LEDs. See "MoM FX helper board" below |
 | Proffieboard V3.9 + SD card | Sound board. The diagram photo is a V3.7; the configurator covers the V3 family |
-| FSC-BT909 Bluetooth module | Bluetooth, on the board's RX/TX pads |
+| FSC-BT909 Bluetooth module (KR Sabers carrier board) | Bluetooth: 4 thin wires to SDVDD, GND, TX and RX. See "Bluetooth board" below |
 | 28 mm 4 Ω 3 W bass speaker | SPKR+ / SPKR− |
 | 18650 3120 mAh protected cell (1 of the 2) | Battery. Protected cells are a few mm longer than unprotected ones, so check it fits between the spring contacts |
 | Spring battery contacts | Hold the battery; it comes out to charge |
@@ -107,6 +107,20 @@ Tips for long wires you'll trim later:
 
 On the crystal strip, use the end whose arrows point away from the wire (DIN), and connect the strip's 5V/+, DIN and GND/− pads.
 
+## Bluetooth board (KR Sabers BT909 module PCB)
+
+The BT909 is mounted on a KR Sabers carrier board, sold by The Saber Armory as the [FSC-BT909 Bluetooth PCB Unit](https://thesaberarmory.com/products/shtokcustomworx-fsc-bt909-bluetooth-pcb-unit). The pads are labeled on the back. The listing's [wiring image](https://cdn.shopify.com/s/files/1/0262/5368/8868/products/SCW-BT909-3.jpg) marks RX "to TX" and TX "to RX", so the data wires cross over, the same as the configurator draws.
+
+| BT909 board pad | Proffieboard pad | Wire |
+| --- | --- | --- |
+| **+3.3V** | SDVDD | Thin |
+| **GND** (the one next to +3.3V) | GND | Thin |
+| **RX** | **TX** | Thin |
+| **TX** | **RX** | Thin |
+| Second **GND**, **LED 1**, **LED 2** | Leave empty | Only for optional external status LEDs. The board already has its own two |
+
+SDVDD is a 3.3 V supply the Proffieboard can switch off in low-power mode, which is why the configurator uses it for Bluetooth.
+
 ## Shtok NPXL V4 hilt-side connector
 
 From Shtok's [NPXL V4 manual](https://drive.google.com/file/d/1S0gRH6mnw8OvC6XNEBnWZGeY1ES1nhG6/view), the hilt-side board has these pads:
@@ -172,7 +186,6 @@ Once the checks are done, LED1 and LED2 go into the config as two plain LEDs on 
 ## Still to confirm
 
 - **Helper board:** the four checks above, and whether Veracity's v4.1 is the chassis designer's V2.
-- **Bluetooth board:** your BT909 is on a breakout with 7 pads at one end, so it won't look like the bare module in the diagram. The pads have no labels on the module side; they're probably printed on the back. Match by those labels: GND → BATT−, VCC/3V3 → SDVDD, TX → RX, RX → TX. Leave any extra pins (STATE, EN, KEY) unconnected. If the power pin says **5V or VIN** instead of 3.3 V, check before wiring it.
 - **Slide switch:** if it's going in as a kill switch, the configurator wires battery + to an end pin and the middle pin to BATT+, leaving the third pin unused. Wired that way, the whole blade current goes through the switch, and a full-white blade can draw more than a small slide switch is rated for. Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) shows a low-current alternative: cut the BATT−/GND bridge and switch only the board.
 - **4-pin SMT pogo connector:** if this makes the crystal chamber removable, three of its pins would carry crystal +, − and data, with one spare. Tell me where it goes and I'll add it.
 
