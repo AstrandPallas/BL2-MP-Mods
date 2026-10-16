@@ -58,9 +58,7 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 
 | Proffieboard pad | Wire | Runs to | Notes |
 | --- | --- | --- | --- |
-| **BATT+** | **Thick** | Battery + | Through the helper board's BATT+ → BRD+ if check 2 says it's in the battery line |
-| **BATT+** | **Thick** | Blade +: rotary **+** → NPXL **+** | A second thick wire on the same pad. If that's too crowded, take blade + straight from the battery's + contact; Shtok's rotary diagram does it that way |
-| **BATT+** | Thin | Crystal chamber **+** | A few LEDs draw very little |
+| **BATT+** | **Thick** | Battery + | The only wire on this pad. Goes through the helper board's BATT+ → BRD+ if check 2 says it's in the battery line |
 | **BATT−** | **Thick** | Battery − | Every LED's current comes back through here |
 | **LED2 + LED3** | **Thick** | Blade −: rotary **−** → NPXL **−** | The two pads are next to each other. Strip enough wire to lay across both and solder them together |
 | **GND** | Thin | Shared leg of both buttons: rotary **GND** → helper **GND** | GND and BATT− are joined on the board, so any GND or BATT− pad works |
@@ -77,8 +75,17 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 | **SPKR+ / SPKR−** | Thin | Speaker | Under 1 A even at full volume (3 W into 4 Ω) |
 | **LED4 / LED5** | Thin | Helper **LED1− / LED2−** | Optional, after check 3. Easy to add now and trim later |
 
+Two + wires don't go on the Proffieboard at all: **blade +** (thick, to rotary **+** → NPXL **+**) and **crystal +** (thin). Every battery + point in the saber is electrically the same. Solder these two at the far end of the thick BATT+ wire, wherever it finishes:
+
+- At the battery's + contact, or
+- At the helper board's BRD+ pad, if check 2 shows the helper sits in the battery line. That way a switch on the helper cuts them too.
+
+Shtok's rotary diagram feeds the blade + straight from the battery the same way. It also keeps the small BATT+ pad down to one wire.
+
 Tips for long wires you'll trim later:
 
+- **Length:** the chassis-side wires only need to reach the rotary connector's pin board (CHC_M), not the emitter. The hilt side gets its own short wires from the ring board (CHC_F). Cut each wire to reach the far end of the chassis plus about 5 cm (2"). If you can't measure yet, 20 cm (8") each is plenty.
+- **Bench test first:** with the wires long, you can hook up the battery, speaker, buttons and blade connector on the bench, flash the config and test everything before trimming anything.
 - Use red and black for the thick + and − wires.
 - Give each thin wire a different colour and write down which colour is on which pad. Once the wires are trimmed and bundled, that list is the only way to tell them apart.
 - Tin the pads and the wire ends before you join them.
