@@ -115,7 +115,7 @@ Colour plan for black, red, white, green, yellow and blue. Each group of wires t
 | Ends at | Wires (Proffieboard pad → colour) |
 | --- | --- |
 | Rotary connector pin board | blade + **red thick** (from the battery + contact), LED2+LED3 **black thick**, Data1 white, Data2 yellow |
-| Control box: 4-pin pogo connector to the helper board (likely; see "MoM FX helper board") | BT1 green, BT2 blue, GND (pad 5) black |
+| Control box: 4-pin pogo connector to the helper board | BT1 green, BT2 blue, GND (pad 5) black |
 | Battery contacts | BATT+ **red thick**, BATT− **black thick** |
 | Bluetooth board | SDVDD red, GND black, TX yellow, RX blue |
 | Crystal chamber | crystal + red (from the battery + contact), LED1 black, Data3 white (through the 330 Ω) |
@@ -205,7 +205,7 @@ How SW1+, SW2+ and GND reach the Proffieboard depends on where the helper board 
 
 In the first two cases the rotary's B1, B2 and GND rings are free, so blade detect could use one of them.
 
-**For the MoM it's one of the two "stays in the hilt" rows.** The helper board sits in the square control box, almost outside the main tube, so it doesn't come out with the chassis. The 4-pin pogo connector is the likely link: one half on the chassis behind the control box's opening, the other on the helper board. Its four pins would cover SW1+, SW2+ and GND, plus the kill-switch line your notes put on pin 1. If so:
+**For the MoM it's the 4-pin pogo row (confirmed).** The helper board sits in the square control box outside the chassis, and the 4-pin pogo connector joins them: one half on the chassis behind the control box's opening, the other on the helper board. Its four pins would cover SW1+, SW2+ and GND, plus the kill-switch line your notes put on pin 1. If so:
 
 - Run the BT1 (green), BT2 (blue) and pad-5 GND (black) wires to where the pogo connector sits on the chassis, not to the rotary connector.
 - The helper's LED1− and LED2− have no pin left to cross on, so the optional LED4/LED5 wires probably aren't needed.
@@ -227,7 +227,7 @@ Once the checks are done, LED1 and LED2 go into the config as two plain LEDs on 
 
 - **Helper board:** the four checks above, and whether Veracity's v4.1 is the chassis designer's V2.
 - **Kill switch for the MoM:** the one High Amp Kill Switch in the order is counted for the Obi-Wan. Your notes say the MoM chassis routes a kill switch through the helper board's pogo pin 1, so the MoM may need a switch of its own. I haven't seen the chassis instructions. Send the Jawa's Depot page or its wiring notes and I'll map it, together with check 2 (the helper's BATT+, BRD+ and U$2 pads). Whatever switch goes in must not carry the blade current: keep blade + on the battery side as described above, or use Hubbe's [low-current switch method](https://fredrik.hubbe.net/lightsaber/v6/) (cut the BATT−/GND bridge and switch only the board). The mini black switch is only usable in a low-current spot like that. The configurator's own kill-switch drawing puts the switch in the main battery + line, which would carry the full blade current.
-- **4-pin SMT pogo connector:** where it goes on the MoM. If the chassis uses it to join the helper board (pin 1 being the kill switch), the buttons might go through it instead of the rotary's B1/B2. That would free those two rotary contacts, for example for blade detect. The chassis instructions should settle this too.
+- **4-pin pogo pin order:** it joins the chassis to the helper board (confirmed). What's still open is which helper pad each of the 4 pins lands on. Pin 1 is the kill-switch line per your notes; the other three should be SW1+, SW2+ and GND. A photo of the back of the helper board and both halves of the pogo connector, or the chassis instructions, will settle it.
 - **Second rotary connector set:** not on either saber's list. It's the Obi-Wan's if its chassis comes apart, otherwise a spare.
 
 ## Config (`out/mom/config.h`)
