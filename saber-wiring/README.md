@@ -18,19 +18,47 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | Spring battery contacts | Hold the battery; it comes out to charge |
 | 2 A charger | External, shared. There's no charge port or kill switch in this build |
 | Shtok Rotary NeoPixel & 2 Button PCB connector set (1 set) | Joins the removable chassis to the hilt. Carries power, blade data, connector-LED data and both buttons |
-| Shtok NPXL V4 hilt-side connector + 1" holder | Where the blade plugs in. Has 16 LEDs of its own that light the hero blade plug. There are two in the parts photos; Mom's build uses one |
-| Shtok Battery and Speaker PCB Connector Set (BAT_M + BAT_F, in the parts photos) | Not in the wiring plan and not on the order list. It joins a removable battery-and-speaker section to the chassis, carrying battery +/− and speaker +/− ([listing](https://thesaberarmory.com/products/shtokcustomworx-battery-and-speaker-pcb-connector-set)). It's only needed if the MoM chassis splits there; otherwise it's spare. No Proffieboard pad changes either way |
-| 330 Ω resistor (surface-mount chip marked "331", on a paper strip) | In series on the **crystal chamber** data wire (Data3). Tin both ends, solder the Data3 wire to one end and the crystal's DIN wire to the other, then cover it with heat shrink |
+| Shtok NPXL V4 hilt-side connector + 1" holder | Where the blade plugs in. Has 16 LEDs of its own that light the hero blade plug. Three were ordered: one for Mom, one for the Obi-Wan, one spare |
+| Shtok Battery and Speaker PCB Connector Set (BAT_M + BAT_F, in the parts photos) | Only one was ordered and it's not on Mom's list, so it's presumably the Obi-Wan's. It joins a removable battery-and-speaker section to the chassis, carrying battery +/− and speaker +/− ([listing](https://thesaberarmory.com/products/shtokcustomworx-battery-and-speaker-pcb-connector-set)). If Mom's MoM chassis turns out to split there, it would change no Proffieboard pads |
+| 330 Ω 0603 resistor (surface-mount chip marked "331", on a paper strip; 0603 is 1.6 × 0.8 mm) | In series on the **crystal chamber** data wire (Data3). Tin both ends, solder the Data3 wire to one end and the crystal's DIN wire to the other, then cover it with heat shrink |
 | WS2812 mini strip (cut 2–4 LEDs off) | Crystal chamber light |
 | 4-pin SMT pogo connector | Not placed yet (see "Still to confirm") |
 | Saberbay 1" thin-walled 36" neopixel blade | Main blade, 130 LEDs (Saberbay's formula: 36 ÷ 40 × 144 ≈ 130) |
 | Aluminum hero NeoPixel blade plug + 4× 2 mm magnets | Goes in the blade holder when the blade is out. Lit by the NPXL's 16 LEDs |
-| 2 small tactile switches (in the parts photo) | Probably spares, since the helper board has its own two switches. If you use them, wire two **diagonally opposite** legs; legs on the same side can be joined inside |
-| 3-pin slide switch, silver, marked "3A 120VAC" | Not in the wiring yet. The kill-switch type Hubbe's configurator draws. Optional, since the battery comes out to charge. Check 2 shows whether the helper board's U$2 pads are meant for it (see "Still to confirm") |
+| 2 low-profile red tactile switches | For the Obi-Wan saber (see "Order split"). Mom's helper board has its own two switches. When wiring 4-leg switches, use two **diagonally opposite** legs; legs on the same side can be joined inside |
+| High Amp Kill Switch (silver C&K slide switch, marked "3A 120VAC") | Only one was ordered and it's not on Mom's list, so it's presumably the Obi-Wan's. Mom's saber can do without one, since the battery comes out to charge |
 | Mini black 3-pin slide switch | Not in the wiring yet. Low-current only, never in the blade's power line. Fits Hubbe's low-current switch method, or an on/off switch in the Bluetooth board's +3.3V wire (Shtok's Bluetooth diagram shows one as optional) |
 | Small round board marked BLADE, with 5 LEDs (in the parts photo) | Shtok NPXL blade-side connector board, LED version (5 built-in SK6812 pixels). Most likely the light inside the hero blade plug. It touches the NPXL pins and runs off blade data, so it doesn't need any wires |
-| 4 loose gold pins (in the parts photo) | Pogo pins, probably the rest of the rotary set's 12 pins for the CHC_M board |
+| 4 loose gold pins | The separately ordered "Replacement Pogo Pins – Short Pins ×4". Spares for the rotary, battery/speaker and short-pin NPXL boards |
 | Thick and thin wire | See "Wiring the Proffieboard" for which wire goes on which pad |
+
+## Order split: Mom's MoM saber vs the Obi-Wan saber
+
+The Saber Armory order covers both sabers. Anything not on Mom's own parts list goes to the Obi-Wan saber or is a spare.
+
+| Ordered | Mom (MoM) | Obi-Wan | Spare |
+| --- | --- | --- | --- |
+| Proffieboard v3.9 ×2 | 1 | 1 | |
+| FSC-BT909 Bluetooth PCB Unit ×2 | 1 | 1 | |
+| 28 mm 4 Ω 3 W speaker ×2 | 1 | 1 | |
+| Rotary NeoPixel & 2 Button connector set ×2 | 1 | 1 | |
+| Keeppower 18650 3120 mAh dual pack | 1 cell | | 1 cell |
+| Keeppower 21700 5000 mAh | | 1 | |
+| Spring Battery Contacts Set | ✓ (18650) | | |
+| Battery Contacts Set (Keystone) | | ✓ (21700) | |
+| NPXL V4 hilt side, short pins, assembled ×3 | 1 | 1 | 1 |
+| NPXL V3/V4 hilt-side holder 1" | ✓ | | |
+| NPXL blade-side LED board | ✓ (hero blade plug) | | |
+| 330 Ω 0603 SMD resistor ×2 | 1 (crystal data) | 1 if it has a neopixel crystal or accent | |
+| WS2812 2020 mini strip, 10 LEDs | 2–4 LEDs (crystal) | | the rest |
+| KR 128x32 OLED, white | | ✓ | |
+| High Amp Kill Switch (C&K slide switch, marked 3A 120VAC) | | ✓ (not on Mom's list) | |
+| Battery and Speaker PCB Connector Set | | ✓ (not on Mom's list) | |
+| Low Profile Red Tactile Switch ×2 | | ✓ (Mom's helper board has its own buttons) | |
+| Replacement Pogo Pins, short ×4 (the 4 loose pins) | | | ✓ fit the rotary, battery/speaker and short-pin NPXL boards |
+| 2 A charger | shared | shared | |
+
+Not from this order: the MoM hilt, crystal chamber, helper board v4.1 and reveal board, Saberbay blade and hero plug, the 4-pin connector, the M3 screws, and the mini black slide switch.
 
 ## Configurator settings
 
