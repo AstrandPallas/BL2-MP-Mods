@@ -87,7 +87,7 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 
 | Proffieboard pad | Wire | Runs to | Notes |
 | --- | --- | --- | --- |
-| **BATT+** | Medium | Kill-switch return: 4-pin pogo → helper **BRD+** | Only the board's own current flows here (about 1 A at most, at full volume), because the blade takes its + straight from the battery. Use the thickest wire that fits the small pogo pad |
+| **BATT+** | **Thick** (thin would also do) | Kill-switch return: 4-pin pogo → helper **BRD+** | Only the board's own current flows here (about 1 A at most, at full volume), because the blade takes its + straight from the battery. At the pogo end, lay the wire alongside the pin's leg and solder it there, then heat-shrink it |
 | **BATT−** | **Thick** | Battery − | Every LED's current comes back through here |
 | **LED2 + LED3** | **Thick** | Blade −: rotary **−** → NPXL **−** | The two pads are next to each other. Strip enough wire to lay across both and solder them together |
 | **GND** | Thin | Shared leg of both buttons: rotary **GND** → helper **GND** | GND and BATT− are joined on the board, so any GND or BATT− pad works |
