@@ -73,7 +73,7 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 | **TX** | Thin | BT909 **RX** | |
 | **SDVDD** | Thin | BT909 **+ / VCC** | Switched 3.3 V |
 | **SPKR+ / SPKR−** | Thin | Speaker | Under 1 A even at full volume (3 W into 4 Ω) |
-| **LED4 / LED5** | Thin | Helper **LED1− / LED2−** | Optional, after check 3. Easy to add now and trim later |
+| **LED4 / LED5** | Thin | Helper **LED1− / LED2−** | Optional, after check 3. Only works if the helper board is on the Proffieboard's side of the rotary connector, because the rotary has no spare contacts |
 
 Two + wires don't go on the Proffieboard at all: **blade +** (thick, to rotary **+** → NPXL **+**) and **crystal +** (thin). Every battery + point in the saber is electrically the same. Solder these two at the far end of the thick BATT+ wire, wherever it finishes:
 
@@ -84,18 +84,16 @@ Shtok's rotary diagram feeds the blade + straight from the battery the same way.
 
 **Use stranded wire for the final install, not solid core.** Solid wire is stiff. It pries at the pads, and wires that bend repeatedly (removable chassis, battery swaps, clashes) tend to crack next to the solder joint. Silicone or PTFE stranded wire is the usual choice; Shtok pre-wires its NPXL connectors with PTFE, 22 AWG for + and −. The 22 AWG solid-core box is fine for a bench test. For the four thick wires in the saber, get about 1 m (3 ft) each of red and black 22 AWG stranded.
 
-Colour plan for six colours. Within a colour, flag each wire with a strip of masking tape at the far end:
+Colour plan for black, red, white, green, yellow and blue. Each group of wires that ends at the same part has no repeated colour, except the thick and thin black at the rotary connector, which you can tell apart by size. Flag each wire's far end with masking tape anyway.
 
-| Colour | Wires |
+| Ends at | Wires (Proffieboard pad → colour) |
 | --- | --- |
-| Red (thick) | Battery + (BATT+), blade + |
-| Black (thick) | Battery − (BATT−), blade − (LED2 + LED3) |
-| Red (thin) | Crystal +, Bluetooth + (SDVDD) |
-| Black (thin) | Both GND wires, LED1 (crystal −), LED4, LED5 |
-| White | Data1, Data2, Data3 |
-| Green | BT1, BT2 |
-| Yellow | SPKR+, SPKR− |
-| Blue | RX, TX |
+| Rotary connector pin board | blade + **red thick** (from the battery + contact), LED2+LED3 **black thick**, GND black, Data1 white, Data2 yellow, BT1 green, BT2 blue |
+| Battery contacts | BATT+ **red thick**, BATT− **black thick** |
+| Bluetooth board | SDVDD red, GND black, TX yellow, RX blue |
+| Crystal chamber | crystal + red (from the battery + contact), LED1 black, Data3 white (through the 330 Ω) |
+| Speaker | SPKR+ and SPKR− both green. Polarity doesn't matter with one speaker |
+| Helper LEDs (optional) | LED4 white, LED5 yellow |
 
 Tips for long wires you'll trim later:
 
