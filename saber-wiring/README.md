@@ -10,7 +10,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | --- | --- |
 | MoM hilt | The hilt |
 | BRrogers crystal chamber | Lit by 2–4 LEDs cut from the WS2812 mini strip |
-| MoM FX helper board V2 | **Not wired in yet.** I couldn't find its layout (see "Still to confirm") |
+| MoM FX helper board V2 | Sits in the control box. Carries the two buttons (side-push switches pressed by the box buttons) and two small LEDs. See "MoM FX helper board V2" below |
 | Proffieboard V3.9 + SD card | Sound board. The diagram photo is a V3.7; the configurator covers the V3 family |
 | FSC-BT909 Bluetooth module | Bluetooth, on the board's RX/TX pads |
 | 28 mm 4 Ω 3 W bass speaker | SPKR+ / SPKR− |
@@ -24,7 +24,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | 4-pin SMT pogo connector | Not placed yet (see "Still to confirm") |
 | Saberbay 1" thin-walled 36" neopixel blade | Main blade, 130 LEDs (Saberbay's formula: 36 ÷ 40 × 144 ≈ 130) |
 | Aluminum hero NeoPixel blade plug + 4× 2 mm magnets | Goes in the blade holder when the blade is out. Lit by the NPXL's 16 LEDs |
-| 2 small tactile switches (in the parts photo) | The Power and Aux buttons. With 4 legs, use two **diagonally opposite** legs; legs on the same side can be joined inside |
+| 2 small tactile switches (in the parts photo) | Probably spares, since the helper board has its own two switches. If you use them, wire two **diagonally opposite** legs; legs on the same side can be joined inside |
 | 3-pin slide switch (in the parts photo) | Not in the wiring yet. Could be a kill switch (see "Still to confirm") |
 | Small round board marked BLADE, with a few LEDs (in the parts photo) | A blade-side connector board. It goes inside a blade or plug and touches the NPXL pins, so it never wires to the Proffieboard |
 | Silicone wire assortment (in the parts photo) | Shtok's diagrams use 24 AWG (or thicker, 20–22 AWG) for + and − to the blade, and 28–34 AWG for data and button wires |
@@ -101,9 +101,37 @@ This set has one data contact plus an **ID** contact. The blade and the connecto
 
 If the buttons don't actually pass through the rotary connector in the MoM hilt, B1 and B2 are free. You could then turn Blade Detect on and run BD to the Free1 pad.
 
+## MoM FX helper board V2
+
+The helper board sits in the control box behind the decorative reveal card. The control-box buttons press its two side-mounted switches, per BRrogers's [assembly thread](https://www.therpf.com/forums/threads/fx-reveal-board-assembly-for-fx-mom-cave-hero.339167). I couldn't find a wiring guide for it, so this mapping comes from its printed labels. Run the checks below before soldering.
+
+| Helper board pad | Proffieboard pad | How sure |
+| --- | --- | --- |
+| **SW1+** | BT1 (power button) | Likely. Signal side of switch SW1 |
+| **SW2+** | BT2 (aux button) | Likely |
+| **GND** | BATT− | Likely. Common for both switches |
+| **BATT+** | Battery + | Likely |
+| **BRD+** | BATT+ | Run check 2 |
+| **LED1−** | LED4 | Run check 3. Negative of the board's LED1 |
+| **LED2−** | LED5 | Run check 3 |
+| **DATA1 / DATA2** | A free data pad (Data4 or Free1–3) | Run check 4 |
+
+If the helper board is on the far side of the rotary connector, SW1+, SW2+ and GND go through its B1, B2 and GND rings.
+
+Checks, using a multimeter in continuity (beep) mode with nothing connected:
+
+1. **Buttons:** hold the top switch. **SW1+ ↔ GND** should beep only while it's pressed. Do the same with the second switch and **SW2+**.
+2. **Power:** test **BATT+ ↔ BRD+**.
+   - If it beeps, they're joined, probably through F1 as a fuse. Run battery + to BATT+, and BRD+ to the Proffieboard's BATT+.
+   - If it doesn't beep, see whether BATT+ and BRD+ each beep to one of the three big **U$2** pads. If they do, U$2 is probably where the 3-pin slide switch (kill switch) goes.
+3. **LEDs:** **LED1−** should beep to a pad of the white part marked LED1. **LED2−** should do the same with LED2.
+4. **Data:** test **DATA1** and **DATA2** against the LED1 and LED2 parts, either directly or through R1 and R2. If they connect, the two LEDs are addressable side-view pixels and each needs a data wire. The small capacitors beside each LED suggest that's the case.
+
+Once the checks are done, LED1 and LED2 get added to the config as two more blades. That means two more styles in every preset.
+
 ## Still to confirm
 
-- **Helper board V2:** this is the MoM kit's FX helper board. I couldn't find its layout or pad labels online. Send photos of both sides. It may replace some of the wires above (likely the buttons or the rotary connector), and I'll map its pads onto this list.
+- **Helper board V2:** the four checks above.
 - **Bluetooth board:** your BT909 is on a breakout with all its pins at one end, so it won't look like the bare module in the diagram. Match by the printed labels: GND → BATT−, VCC/3V3 → SDVDD, TX → RX, RX → TX. Leave any extra pins (STATE, EN, KEY) unconnected. If the power pin says **5V or VIN** instead of 3.3 V, check before wiring it.
 - **Slide switch:** if it's going in as a kill switch, the configurator wires battery + to an end pin and the middle pin to BATT+, leaving the third pin unused. Wired that way, the whole blade current goes through the switch, and a full-white blade can draw more than a small slide switch is rated for. Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) shows a low-current alternative: cut the BATT−/GND bridge and switch only the board.
 - **4-pin SMT pogo connector:** if this makes the crystal chamber removable, three of its pins would carry crystal +, − and data, with one spare. Tell me where it goes and I'll add it.
