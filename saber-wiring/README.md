@@ -110,7 +110,7 @@ Keep blade + on the battery side even if check 2 finds a switch between the help
 
 **Use stranded wire for the final install, not solid core.** Solid wire is stiff. It pries at the pads, and wires that bend repeatedly (removable chassis, battery swaps, clashes) tend to crack next to the solder joint. Silicone or PTFE stranded wire is the usual choice; Shtok pre-wires its NPXL connectors with PTFE, 22 AWG for + and −. The 22 AWG solid-core box is fine for a bench test. For the four thick wires in the saber, get about 1 m (3 ft) each of red and black 22 AWG stranded.
 
-Colour plan for black, red, white, green, yellow and blue. Each group of wires that ends at the same part has no repeated colour, except the thick and thin black at the rotary connector, which you can tell apart by size. Flag each wire's far end with masking tape anyway.
+Colour plan for black, red, white, green, yellow and blue. Each group of wires that ends at the same part has no repeated colour. Flag each wire's far end with masking tape anyway.
 
 | Ends at | Wires (Proffieboard pad → colour) |
 | --- | --- |
