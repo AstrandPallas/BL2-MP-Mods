@@ -224,22 +224,57 @@ Once the checks are done, LED1 and LED2 go into the config as two plain LEDs on 
 - **4-pin pogo signals:** the reading above comes from two lines of the video's subtitles. If the video goes on to name each pin, note which is which. Either way, mark matching pins on both halves.
 - **Second rotary connector set:** not on either saber's list. It's the Obi-Wan's if its chassis comes apart, otherwise a spare.
 
-## Config (`out/mom/config.h`)
+## ProffieOS config to flash: `proffieos/mom_config.h`
 
-```cpp
-#define NUM_BLADES 4
-#define NUM_BUTTONS 2
-#define SHARED_POWER_PINS
-#define ENABLE_SERIAL      // Bluetooth
-...
-WS281XBladePtr<130, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),                                   // main blade
-SubBladeWithStride(0, 15, 2, WS281XBladePtr<16, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >()),  // NPXL LEDs, half 1
-SubBladeWithStride(1, 15, 2, NULL),                                                                                         // NPXL LEDs, half 2
-WS281XBladePtr<4, blade3Pin, Color8::GRB, PowerPINS<bladePowerPin1> >()                                                     // crystal chamber
-```
+[`proffieos/mom_config.h`](proffieos/mom_config.h) is the config to flash. It starts from the configurator's output (`out/mom/config.h`) and adds the control box's two lights, Bluetooth and save-state. It compiles cleanly against **ProffieOS 8.10** for Proffieboard V3: the firmware uses about 189 KB of 512 KB of flash and about 31 KB of RAM.
 
-- Change the `4` in the crystal chamber line to the number of LEDs you actually cut (2, 3 or 4).
-- The presets use the configurator's example font folders (`TeensySF`, `SmthJedi`, …). Replace them with the font folders on the SD card.
+| Blade (in preset order) | Hardware | Pins |
+| --- | --- | --- |
+| 1 | Main blade, 130 pixels | Data1, LED2 + LED3 |
+| 2–3 | NPXL V4 connector's 16 pixels, as two interleaved halves (how the configurator handles an Illuminated PCB) | Data2, LED2 + LED3 |
+| 4 | Crystal chamber, 4 pixels | Data3 (through 330 Ω), LED1 |
+| 5 | Control box green light | LED5 |
+| 6 | Control box red light | LED6 |
+
+| Preset | Font folder | Look |
+| --- | --- | --- |
+| luke rotj | `LukeROTJ` (your Luke font) | Green with audio flicker, crystal pulsing green |
+| jedi green | `SmthJedi` (free) | Same, with Hubbe's free Smooth Jedi font |
+| jedi blue | `SmthGrey` (free) | Blue |
+| battery level | `TeensySF` (free) | Blade shows the battery charge |
+
+Before flashing:
+- Change the `4` in the crystal line (`WS281XBladePtr<4, blade3Pin, ...>`) to the number of LEDs you actually cut.
+- `VOLUME 1000` is moderate. Hubbe's default V3 config uses 2200, so raise it if the speaker is too quiet.
+- `CLASH_THRESHOLD_G 1.0` is the configurator's default. If swings set off clashes, raise it to 2–3.
+
+### Flashing
+
+1. Install the [Arduino IDE](https://www.arduino.cc/en/software). In **File → Preferences → Additional boards manager URLs**, add `https://profezzorn.github.io/arduino-proffieboard/package_proffieboard_index.json`, then install **Proffieboard** from the Boards Manager.
+2. Download [ProffieOS 8.10](https://fredrik.hubbe.net/lightsaber/ProffieOS-v8.10.zip) from Hubbe's site and unzip it. The folder must stay named `ProffieOS`.
+3. Copy `mom_config.h` into `ProffieOS/config/`.
+4. Open `ProffieOS/ProffieOS.ino`. Remove the `// ` from the `CONFIG_FILE` line and change it to `#define CONFIG_FILE "config/mom_config.h"`.
+5. In **Tools**, set:
+   - **Board:** Proffieboard V3
+   - **USB Type:** Serial + WebUSB + Mass Storage
+   - **DOSFS:** SDIO (High Speed). ProffieOS refuses to compile otherwise.
+6. Plug the board in with a data USB cable, pick its port and click **Upload**.
+
+### SD card
+
+1. Copy the contents of Hubbe's free [ProffieOS SD card download](https://fredrik.hubbe.net/lightsaber/sound/) to the root of the SD card. It contains the `SmthJedi`, `SmthGrey` and `TeensySF` fonts and the `tracks` folder the presets use.
+2. Put your Luke font on the card in a folder named **`LukeROTJ`**, or change `"LukeROTJ"` in the config to match the folder's name.
+
+### Luke sound fonts
+
+Most Luke fonts are paid. These are made for Proffie or are well known:
+
+| Font | Price | Notes |
+| --- | --- | --- |
+| [Father and Son (Luke ROTJ) for Proffie](https://saberfont.com/Father-and-Son-for-Proffie_p_816.html), by Juansith on Saberfont.com | $12 | Proffie version. Comes in **Normal** and **Cave Scene** versions, which suits a cave-build hilt. Also has 52 clashes, a quotes pack and two tracks. Needs a Saberfont account; check it's in stock |
+| [Luke EP6](https://www.bksabersounds.com/products/luke-ep6-saber-sound-font), BK Saber Sounds | $10 | "A faithful reimagination" of the ROTJ saber. Check the download includes a Proffie version |
+| Kyberphonic "The Return" V1/V2 | – | A known Luke ROTJ font ([demo](https://www.youtube.com/watch?v=BhgDvPhueDc)), but Kyberphonic's website currently shows a parked page |
+| Smooth Jedi (`SmthJedi`) | Free | Not Luke-specific. Included in Hubbe's SD card download, and already the config's second preset |
 
 ## Regenerating
 
