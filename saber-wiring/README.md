@@ -114,7 +114,8 @@ Colour plan for black, red, white, green, yellow and blue. Each group of wires t
 
 | Ends at | Wires (Proffieboard pad → colour) |
 | --- | --- |
-| Rotary connector pin board | blade + **red thick** (from the battery + contact), LED2+LED3 **black thick**, GND black, Data1 white, Data2 yellow, BT1 green, BT2 blue |
+| Rotary connector pin board | blade + **red thick** (from the battery + contact), LED2+LED3 **black thick**, Data1 white, Data2 yellow |
+| Control box: 4-pin pogo connector to the helper board (likely; see "MoM FX helper board") | BT1 green, BT2 blue, GND (pad 5) black |
 | Battery contacts | BATT+ **red thick**, BATT− **black thick** |
 | Bluetooth board | SDVDD red, GND black, TX yellow, RX blue |
 | Crystal chamber | crystal + red (from the battery + contact), LED1 black, Data3 white (through the 330 Ω) |
@@ -175,7 +176,7 @@ This is a pass-through. Every ring on the female board (CHC_F) touches the same-
 
 This set has one data contact plus an **ID** contact. The blade and the connector LEDs need two data wires, so this wiring carries the connector-LED data (D2) on ID. That leaves no contact for the NPXL's blade-detect (BD) pin, which is why Blade Detect is off.
 
-If the buttons don't actually pass through the rotary connector in the MoM hilt, B1 and B2 are free. You could then turn Blade Detect on and run BD to the Free1 pad.
+If the buttons don't actually pass through the rotary connector in the MoM hilt, B1 and B2 are free. That's likely, because the helper board sits in the control box and probably connects through the 4-pin pogo connector instead. You could then turn Blade Detect on and run BD to the Free1 pad through B1 or B2.
 
 ## MoM FX helper board
 
@@ -203,6 +204,13 @@ How SW1+, SW2+ and GND reach the Proffieboard depends on where the helper board 
 | Stays in the hilt, no pogo connector | Through the rotary's B1, B2 and GND rings, then three short wires from the ring board (CHC_F) to the helper board |
 
 In the first two cases the rotary's B1, B2 and GND rings are free, so blade detect could use one of them.
+
+**For the MoM it's one of the two "stays in the hilt" rows.** The helper board sits in the square control box, almost outside the main tube, so it doesn't come out with the chassis. The 4-pin pogo connector is the likely link: one half on the chassis behind the control box's opening, the other on the helper board. Its four pins would cover SW1+, SW2+ and GND, plus the kill-switch line your notes put on pin 1. If so:
+
+- Run the BT1 (green), BT2 (blue) and pad-5 GND (black) wires to where the pogo connector sits on the chassis, not to the rotary connector.
+- The helper's LED1− and LED2− have no pin left to cross on, so the optional LED4/LED5 wires probably aren't needed.
+
+The chassis instructions should confirm the pin order.
 
 Checks, using a multimeter in continuity (beep) mode with nothing connected:
 
