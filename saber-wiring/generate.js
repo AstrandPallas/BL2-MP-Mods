@@ -23,7 +23,7 @@ const PARTS = {
   BT1: 'Power button',
   BT2: 'Aux button',
   BT3: 'Aux2 button',
-  WS1: 'Main blade (neopixel)',
+  WS1: 'Main blade connector',
   WS2: 'Second blade / accent (neopixel)',
   WS3: 'Crossguard blade 2 (neopixel)',
   WS4: 'Crystal chamber (neopixel)',

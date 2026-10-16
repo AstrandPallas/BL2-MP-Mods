@@ -24,16 +24,8 @@
     "to": "BATT+"
   },
   {
-    "from": "JACK:-",
-    "to": "BATT:-"
-  },
-  {
-    "from": "JACK:BATT-",
+    "from": "BATT:-",
     "to": "BATT-"
-  },
-  {
-    "from": "JACK:BATT+",
-    "to": "BATT+"
   },
   {
     "from": "WS1:+",
@@ -42,6 +34,22 @@
   {
     "from": "WS1:data",
     "to": "Data1"
+  },
+  {
+    "from": "WS1:d2",
+    "to": "Data2"
+  },
+  {
+    "from": "WS4:+",
+    "to": "BATT+"
+  },
+  {
+    "from": "WS4:data",
+    "to": "Data3"
+  },
+  {
+    "from": "WS4:-",
+    "to": "LED1"
   },
   {
     "from": "BT1:1",
@@ -58,5 +66,21 @@
   {
     "from": "BT2:2",
     "to": "BATT-"
+  },
+  {
+    "from": "BLE:GND",
+    "to": "BATT-"
+  },
+  {
+    "from": "BLE:TX",
+    "to": "RX"
+  },
+  {
+    "from": "BLE:RX",
+    "to": "TX"
+  },
+  {
+    "from": "BLE:+",
+    "to": "SDVDD"
   }
 ]
