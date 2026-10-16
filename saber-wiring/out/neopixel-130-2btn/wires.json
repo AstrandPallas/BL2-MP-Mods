@@ -1,0 +1,62 @@
+[
+  {
+    "from": "LED2",
+    "to": "LED3"
+  },
+  {
+    "from": "WS1:-",
+    "to": "LED2"
+  },
+  {
+    "from": "WS1:-",
+    "to": "LED3"
+  },
+  {
+    "from": "SPKR:+",
+    "to": "SPKR+"
+  },
+  {
+    "from": "SPKR:-",
+    "to": "SPKR-"
+  },
+  {
+    "from": "BATT:+",
+    "to": "BATT+"
+  },
+  {
+    "from": "JACK:-",
+    "to": "BATT:-"
+  },
+  {
+    "from": "JACK:BATT-",
+    "to": "BATT-"
+  },
+  {
+    "from": "JACK:BATT+",
+    "to": "BATT+"
+  },
+  {
+    "from": "WS1:+",
+    "to": "BATT+"
+  },
+  {
+    "from": "WS1:data",
+    "to": "Data1"
+  },
+  {
+    "from": "BT1:1",
+    "to": "BT1"
+  },
+  {
+    "from": "BT1:2",
+    "to": "BATT-"
+  },
+  {
+    "from": "BT2:1",
+    "to": "BT2"
+  },
+  {
+    "from": "BT2:2",
+    "to": "BATT-"
+  }
+]

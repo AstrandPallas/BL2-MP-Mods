@@ -1,0 +1,44 @@
+[
+  {
+    "name": "neopixel-130-2btn",
+    "title": "Proffieboard V3 - 130 LED Neopixel blade (Shtok connector), 2 momentary buttons, charge port",
+    "form": {
+      "blade1": "ws2811",
+      "blade1_ws2811_leds": 130,
+      "blade1_ws2811_rgbw": false,
+      "blade1_ws2811_zz": false,
+      "button1": "click",
+      "display": "none",
+      "rcp": true,
+      "blade2": "none",
+      "button2": "click",
+      "ble": "none",
+      "kill_switch": false,
+      "blade3": "none",
+      "button3": "none",
+      "ir": false,
+      "reverse_orientation": false
+    }
+  },
+  {
+    "name": "neopixel-130-2btn-killswitch-bt909",
+    "title": "Same as above, plus kill switch and FSC-BT909 Bluetooth module",
+    "form": {
+      "blade1": "ws2811",
+      "blade1_ws2811_leds": 130,
+      "blade1_ws2811_rgbw": false,
+      "blade1_ws2811_zz": false,
+      "button1": "click",
+      "display": "none",
+      "rcp": true,
+      "blade2": "none",
+      "button2": "click",
+      "ble": "bt909",
+      "kill_switch": true,
+      "blade3": "none",
+      "button3": "none",
+      "ir": false,
+      "reverse_orientation": false
+    }
+  }
+]
