@@ -248,6 +248,25 @@ Before flashing:
 - `VOLUME 1000` is moderate. Hubbe's default V3 config uses 2200, so raise it if the speaker is too quiet.
 - `CLASH_THRESHOLD_G 1.0` is the configurator's default. If swings set off clashes, raise it to 2–3.
 
+### After soldering the Proffieboard
+
+1. **Short check, before any power.** Look for solder bridging two pads; pad 9 (LED2 + LED3) is the only pair that should be joined. With a multimeter on beep, BATT+ (pad 4) to BATT− (pad 6) must not beep, and nor must BATT+ to GND.
+2. **Flash over USB** (steps below). USB powers the board, so no battery is needed. Open the Serial Monitor and type `help` to check it's alive.
+3. **Prepare the SD card** (below) and insert it.
+4. **Bench test on USB:**
+   - Connect the speaker: you should hear the boot sound.
+   - Briefly touch the BT1 (green) wire to a GND (black) wire. That's a power-button press, so you should hear ignition.
+   - Connect the Bluetooth board and look for it on your phone.
+5. **Bench test on the battery:**
+   - Board power goes out through the kill switch on the helper board and back, so until the hilt is wired, temporarily twist the white kill-switch feed to the red BATT+ wire.
+   - Use 6–8 leftover LEDs from the mini strip as a test blade: + to the blade + wire, − to pad 9's thick wire, DIN to Data1.
+   - Always connect the battery the right way round. Neopixels can fry if it's reversed.
+6. **Then the connectors and far ends:**
+   - Chassis side: the rotary ring board, the pogo strip, the battery contacts, the crystal (with the 330 Ω), the speaker and the Bluetooth board.
+   - Remove R1 from the NPXL before wiring D2.
+   - Run the helper board checks and fit its kill switch.
+   - Hilt side: the rotary pin board, the short wires to the helper and the NPXL, and the flipped pogo strip.
+
 ### Flashing
 
 1. Install the [Arduino IDE](https://www.arduino.cc/en/software). In **File → Preferences → Additional boards manager URLs**, add `https://profezzorn.github.io/arduino-proffieboard/package_proffieboard_index.json`, then install **Proffieboard** from the Boards Manager.
