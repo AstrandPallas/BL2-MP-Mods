@@ -21,7 +21,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | Shtok NPXL V4 hilt-side connector + 1" holder | Where the blade plugs in. Has 16 LEDs of its own |
 | 330 Ω 0603 resistor (surface-mount chip marked "331", on a paper strip; 0603 is 1.6 × 0.8 mm) | In series on the **crystal chamber** data wire (Data3). Tin both ends, solder the Data3 wire to one end and the crystal's DIN wire to the other, then cover it with heat shrink |
 | WS2812 mini strip (cut 2–4 LEDs off) | Crystal chamber light |
-| 4-pin SMT pogo connector | Not placed yet (see "Still to confirm") |
+| 4-pin SMT spring-loaded connector | In the chassis end, beside the rotary ring board. The designer's spec: SMT, 2.5 × 10–11 mm, uncompressed pins no taller than 4 mm. Carries the kill-switch return and the two control-box lights (see "MoM FX helper board") |
 | Saberbay 1" thin-walled 36" neopixel blade | Main blade, 130 LEDs (Saberbay's formula: 36 ÷ 40 × 144 ≈ 130) |
 | 1" aluminum hero NeoPixel blade plug + 4× 2 mm magnets | Goes in the blade holder when the blade is out. Saberbay's NeoPixel plugs come with their own blade-side LED board; that's the ring of gold contacts on top of yours. Lit by that board and the NPXL's 16 LEDs |
 | Still needed | M3 × 8 mm countersunk screw, PTFE wire (stranded; see "Wiring the Proffieboard"), and the printed chassis (LEDO 6060 resin, from Jawa's Depot) |
@@ -87,7 +87,7 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 
 | Proffieboard pad | Wire | Runs to | Notes |
 | --- | --- | --- | --- |
-| **BATT+** | **Thick** (thin would also do) | Kill-switch return: 4-pin pogo → helper **BRD+** | Only the board's own current flows here (about 1 A at most, at full volume), because the blade takes its + straight from the battery. At the pogo end, lay the wire alongside the pin's leg and solder it there, then heat-shrink it |
+| **BATT+** | **Thick** (thin would also do) | Kill-switch return: 4-pin connector **pins 1 and 2** → helper **BRD+** | Only the board's own current flows here (about 1 A at most, at full volume), because the blade takes its + straight from the battery. At the pogo end, lay the wire alongside the pin's leg and solder it there, then heat-shrink it |
 | **BATT−** | **Thick** | Battery − | Every LED's current comes back through here |
 | **LED2 + LED3** | **Thick** | Blade −: rotary **−** → NPXL **−** | The two pads are next to each other. Strip enough wire to lay across both and solder them together |
 | **GND** | Thin | Shared leg of both buttons: rotary **GND** → helper **GND** | GND and BATT− are joined on the board, so any GND or BATT− pad works |
@@ -102,13 +102,14 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 | **TX** | Thin | BT909 **RX** | |
 | **SDVDD** | Thin | BT909 **+ / VCC** | Switched 3.3 V |
 | **SPKR+ / SPKR−** | Thin | Speaker | Under 1 A even at full volume (3 W into 4 Ω) |
-| **LED5 / LED6** | Thin | 4-pin pogo → helper **LED1− / LED2−** | The control box's green ▲ and red ▼ lights, per the Jawa's Depot build video |
+| **LED5 / LED6** | Thin | 4-pin connector **pin 3 / pin 4** → helper **LED1− / LED2−** | The control box's two arrow lights. The designer's pinout calls them LEDx and LEDy |
 
-Three + wires don't go on the Proffieboard at all. Solder them at the **battery's + contact**:
+Two + wires don't go on the Proffieboard at all. Solder them at the **battery's + contact**:
 
 - **Blade +** (thick), to rotary **+** → NPXL **+**. Shtok's rotary diagram feeds the blade + straight from the battery the same way.
 - **Crystal +** (thin).
-- **Kill-switch feed** (thin), through the 4-pin pogo to the helper's **BATT+**. The switch on the helper then sends it back as BRD+ to the Proffieboard's BATT+ pad.
+
+The kill switch gets its battery + on the hilt side. The designer's 4-pin pinout has no pin for it, so it most likely comes from the rotary's + line there, which already carries battery + to the blade connector.
 
 Keep blade + on the battery side, before the kill switch. Small slide switches like the ones in this order are rated around 3 A or less, and the blade can draw more than that. Wired this way, the switch only carries the board's own current. The blade still goes dark when the switch is off: blade − runs through the board's LED2/LED3 switches, and Hubbe's V3 page notes those have pull-down resistors that turn them off when the board has no power.
 
@@ -119,8 +120,8 @@ Colour plan for black, red, white, green, yellow and blue. Each group of wires t
 | Ends at | Wires (Proffieboard pad → colour) |
 | --- | --- |
 | Rotary connector (chassis side) | blade + **red thick** (from the battery + contact), LED2+LED3 **black thick**, GND (pad 5) black thin, Data1 white, Data2 yellow, BT1 green, BT2 blue |
-| 4-pin pogo connector (chassis side) | BATT+ red (kill-switch return), kill-switch feed white (from the battery + contact), LED5 green (green light), LED6 yellow (red light) |
-| Battery contacts | + : blade + **red thick**, crystal + red, kill-switch feed white. − : BATT− **black thick** |
+| 4-pin connector (chassis end) | BATT+ red thick (pins 1 and 2), LED5 green (pin 3), LED6 yellow (pin 4) |
+| Battery contacts | + : blade + **red thick**, crystal + red. − : BATT− **black thick** |
 | Bluetooth board | SDVDD red, GND black, TX yellow, RX blue |
 | Crystal chamber | crystal + red (from the battery + contact), LED1 black, Data3 white (through the 330 Ω) |
 | Speaker | SPKR+ and SPKR− both green. Polarity doesn't matter with one speaker |
@@ -192,24 +193,31 @@ The board sits in the control box behind the green reveal board. The control-box
 | **SW1+** | BT1, through rotary B1 | Likely. Signal side of switch SW1 |
 | **SW2+** | BT2, through rotary B2 | Likely |
 | **GND** | GND (pad 5), through rotary GND | Likely. Common for both switches |
-| **BATT+** | Battery + contact, through the 4-pin pogo | Per the build video ("battery positive to the board") |
-| **BRD+** | BATT+ pad, through the 4-pin pogo | Same. Run check 2 |
-| **LED1−** | LED5, through the 4-pin pogo | Per the build video ("LED 5 and 6, green and…"). Run check 3 |
-| **LED2−** | LED6, through the 4-pin pogo | Same |
+| **BATT+** | Battery +, on the hilt side (most likely from the rotary's + line) | Not on the designer's 4-pin pinout. Confirm with the designer's instructions |
+| **BRD+** | BATT+ pad, through 4-pin **pin 1** (and pin 2) | Designer: "Pin1 = Kill Switch-to-Board Batt+". Run check 2 |
+| **LED1−** | LED5, through 4-pin **pin 3** | Designer: "Pin3 = LEDx arrow neg-". Run check 3 |
+| **LED2−** | LED6, through 4-pin **pin 4** | Designer: "Pin4 = LEDy arrow neg-" |
 | **DATA1 / DATA2** | Leave unconnected for now | Run check 4. Plain LEDs don't take data, so these do something else |
 
-For the MoM, the Jawa's Depot build video shows what crosses where:
+For the MoM, the chassis designer's notes give the 4-pin connector's pinout (for the plain-LED helper board):
 
-- **4-pin pogo connector** (on the chassis end, next to the rotary ring board): the kill-switch loop (battery + out to the helper's BATT+, and BRD+ back to the Proffieboard) and the two control-box lights (LED5 and LED6).
+| Pin | Designer's label | Proffieboard wire |
+| --- | --- | --- |
+| 1 | Kill Switch-to-Board Batt+ | BATT+ (pad 4), red thick |
+| 2 | Extra: a second Batt+, or an extra data line | BATT+ too. The designer says to use two pins for Batt+ unless one pin passes a 1.5 A load test, and doubling up skips the test |
+| 3 | LEDx arrow neg- | LED5 (pad 10), green |
+| 4 | LEDy arrow neg- | LED6 (pad 11), yellow |
+
+- **4-pin connector:** a single spring-loaded SMT strip in the chassis end. Its pins press on contacts in the hilt, so there's no second half to make. The designer says that if your pins are shorter than the chassis expects, a dab of hot glue or tape inside the pommel cap corner keeps them in contact. Check in the designer's video or photos which end is pin 1 before soldering.
 - **Rotary connector:** blade +, blade −, Data1, Data2 (on ID), and the buttons on B1, B2 and GND.
 
-You solder both halves of the 4-pin pogo yourself, so the pin order is your choice. What matters is that each chassis-side pin touches the hilt-side pin carrying the same signal. The two halves face each other, so left and right are mirrored. Mark pin 1 on both halves before soldering.
+If the green and red arrow lights come out swapped, swap `bladePowerPin5` and `bladePowerPin6` in the config.
 
 Checks, using a multimeter in continuity (beep) mode with nothing connected:
 
 1. **Buttons:** hold the top switch. **SW1+ ↔ GND** should beep only while it's pressed. Do the same with the second switch and **SW2+**.
 2. **Power:** test **BATT+ ↔ BRD+**.
-   - If it beeps, they're joined, probably through F1 as a fuse. Run battery + to BATT+, and BRD+ to the Proffieboard's BATT+.
+   - If it beeps, they're joined, probably through F1 as a fuse, and the kill switch is somewhere else in the hilt.
    - If it doesn't beep, see whether BATT+ and BRD+ each beep to one of the three big **U$2** pads. If they do, U$2 is probably where the 3-pin slide switch (kill switch) goes.
 3. **LEDs:** **LED1−** should beep to a pad of the white part marked LED1. **LED2−** should do the same with LED2.
 4. **Data:** find out where **DATA1** and **DATA2** go. Test each one against the three **U$2** pads and the other parts on the board. They may just pass through to something else. Nothing in this build needs them: the blade, connector LEDs and crystal all have their own data wires.
@@ -220,8 +228,8 @@ Once the checks are done, LED1 and LED2 go into the config as two plain LEDs on 
 
 - **Helper board:** the four checks above, and whether Veracity's v4.1 is the chassis designer's V2.
 - **Kill switch for the MoM:** the one High Amp Kill Switch in the order is counted for the Obi-Wan. The MoM's switch sits on the helper board, between its BATT+ and BRD+ (check 2 should show the U$2 pads there). Because blade + comes straight from the battery, this switch only carries the board's own current, about 1 A at most. Check the mini black slide switch's rating, or ask the kit maker which switch U$2 is meant for.
-- **4-pin pogo part:** the connector you have doesn't match the one in the Jawa's Depot video. The video shows teal surface-mount pogo strips (single- and double-ended) and a black pair: spring pins plus a flat-contact target strip. The designer says the part numbers are findable on Mouser. Get them from the video description, a pinned comment or Jawa's Depot directly, because the printed chassis pocket is sized for one specific part. Leave the four pogo wires (BATT+, LED5, LED6, kill-switch feed) long until it arrives. **Ordered:** Treedix 4-pin male spring pogo strip, through-hole, 7.5 mm pins. That's the spring half, for the chassis end; the video shows round spring tips there. **Hilt side:** your existing 4-pin pogo strip, flipped. Solder the hilt-side wires to its spring tips (they'll likely seize, which is fine on this half), and use its flat back pads as the target for the Treedix pins. Keep the back pads free of solder and flux, heat-shrink each joint, and check that all four Treedix tips land squarely on a pad before gluing it in. Pairing: BATT+ return ↔ helper BRD+, kill-switch feed ↔ helper BATT+, LED5 ↔ helper LED1− (green), LED6 ↔ helper LED2− (red). The halves face each other, so hold them together as they mate and mark pin 1 on both before soldering. When the chassis arrives, check the pin spacing (likely 2.54 mm, about 7.6 mm between the outer pins) and that the springs sit partly compressed with the chassis seated. The wires can be soldered straight to the through-hole legs, with heat shrink on each leg.
-- **4-pin pogo signals:** the reading above comes from two lines of the video's subtitles. If the video goes on to name each pin, note which is which. Either way, mark matching pins on both halves.
+- **4-pin connector part:** the designer's spec is a 4-pin **SMT** spring-loaded connector, 2.5 × 10–11 mm, with uncompressed pins no taller than 4 mm (the chassis takes 3 or 4 mm). The Treedix strip doesn't fit that: it's through-hole, and its 7.5 mm pins are nearly twice the maximum. Measure the 4-pin SMT connector you already had. If it's about 2.5 × 10–11 mm with pins no taller than 4 mm, it's the right part after all, used springs-out with no flipped strip or target. If not, look for one to that spec, for example on Mouser as the designer suggests.
+- **Kill-switch battery feed:** confirm where the helper's BATT+ gets battery + on the hilt side (most likely the rotary's + line).
 - **Second rotary connector set:** not on either saber's list. It's the Obi-Wan's if its chassis comes apart, otherwise a spare.
 
 ## ProffieOS config to flash: `proffieos/mom_config.h`
@@ -258,14 +266,14 @@ Before flashing:
    - Briefly touch the BT1 (green) wire to a GND (black) wire. That's a power-button press, so you should hear ignition.
    - Connect the Bluetooth board and look for it on your phone.
 5. **Bench test on the battery:**
-   - Board power goes out through the kill switch on the helper board and back, so until the hilt is wired, temporarily twist the white kill-switch feed to the red BATT+ wire.
+   - Board power comes back through the kill switch in the hilt, so until the hilt is wired, temporarily connect the red BATT+ wire (pad 4) to the battery's + contact. That stands in for the switch.
    - Use 6–8 leftover LEDs from the mini strip as a test blade: + to the blade + wire, − to pad 9's thick wire, DIN to Data1.
    - Always connect the battery the right way round. Neopixels can fry if it's reversed.
 6. **Then the connectors and far ends:**
-   - Chassis side: the rotary ring board, the pogo strip, the battery contacts, the crystal (with the 330 Ω), the speaker and the Bluetooth board.
+   - Chassis side: the rotary ring board, the 4-pin connector, the battery contacts, the crystal (with the 330 Ω), the speaker and the Bluetooth board.
    - Remove R1 from the NPXL before wiring D2.
    - Run the helper board checks and fit its kill switch.
-   - Hilt side: the rotary pin board, the short wires to the helper and the NPXL, and the flipped pogo strip.
+   - Hilt side: the rotary pin board, and the short wires to the helper board and the NPXL.
 
 ### Flashing
 
