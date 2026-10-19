@@ -302,7 +302,7 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 
 ## Still to confirm
 
-- **Config for the chained data line:** NPXL #1's 16 LEDs (and maybe the BLADE board's 5) now come before the blade's 130 on Data1. The bench test shows the exact count; then blade 1 becomes one longer strip split into sections, Data2 drives NPXL #2's ring, and the board needs reflashing. The config in this repo doesn't have that change yet.
+- **`RING_LEDS`:** 16 or 21, from the dark-LED count at the blade tip (see the config section).
 - **Brass-cup part:** confirm it faces up toward the blade, so NPXL #1 and the 1" holder go there.
 - **BLADE board:** confirm the Obi-Wan's blade has its own contact board, so this one is free for the MoM.
 - **Helper board:** the four checks above, and whether Veracity's v4.1 is the chassis designer's V2.
@@ -312,15 +312,18 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 
 ## ProffieOS config to flash: `proffieos/mom_config.h`
 
-[`proffieos/mom_config.h`](proffieos/mom_config.h) is the config to flash. It starts from the configurator's output (`out/mom/config.h`) and adds the control box's two lights, Bluetooth and save-state. It compiles cleanly against **ProffieOS 8.10** for Proffieboard V3: the firmware uses about 189 KB of 512 KB of flash and about 31 KB of RAM.
+[`proffieos/mom_config.h`](proffieos/mom_config.h) is the config to flash. It starts from the configurator's output (`out/mom/config.h`) and adds the control box's two lights, Bluetooth and save-state. It compiles cleanly against **ProffieOS 8.10** for Proffieboard V3: the firmware uses about 190 KB of 512 KB of flash and about 31 KB of RAM.
 
 | Blade (in preset order) | Hardware | Pins |
 | --- | --- | --- |
-| 1 | Main blade, 130 pixels | Data1, LED2 + LED3 |
-| 2–3 | NPXL V4 connector's 16 pixels, as two interleaved halves (how the configurator handles an Illuminated PCB) | Data2, LED2 + LED3 |
-| 4 | Crystal chamber, 4 pixels | Data3 via 4-pin pin 2 and a 330 Ω; LED2 + LED3 (its − taps the blade − wire) |
-| 5 | Control box green light | LED5 |
-| 6 | Control box red light | LED6 |
+| 1 | Main blade, 130 pixels, after the ring on the same strip | Data1, LED2 + LED3 |
+| 2 | NPXL #1's ring at the blade end: the first `RING_LEDS` pixels on Data1 (16, or 21 if the BLADE board's 5 LEDs are in the chain) | Data1, LED2 + LED3 |
+| 3–4 | NPXL #2's ring at the top of the crystal chamber, as two interleaved halves (how the configurator handles an Illuminated PCB) | Data2, LED2 + LED3 |
+| 5 | Crystal chamber, 4 pixels | Data3 via 4-pin pin 2 and a 330 Ω; LED2 + LED3 (its − taps the blade − wire) |
+| 6 | Control box green light | LED5 |
+| 7 | Control box red light | LED6 |
+
+**Setting `RING_LEDS`:** with the old firmware still on the board, ignite and count the dark LEDs at the blade's tip. 16 dark means only NPXL #1's ring is ahead of the blade, so leave it at 16. 21 dark means the BLADE board's 5 LEDs are in the chain too, so set it to 21.
 
 | Preset | Font folder | Look |
 | --- | --- | --- |
