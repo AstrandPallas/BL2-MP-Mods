@@ -9,7 +9,9 @@
 //   1. Main blade: 130 pixels on Data1, negative on LED2 + LED3
 //   2. NPXL V4 connector pixels, first half (Data2)
 //   3. NPXL V4 connector pixels, second half (same strip, interleaved)
-//   4. Crystal chamber: 4 pixels on Data3 (through 330 ohm), negative on LED1
+//   4. Crystal chamber: 4 pixels on Data3, carried to the hilt on 4-pin
+//      connector pin 2 (330 ohm at the crystal end). Its + and - are tapped
+//      from the blade's + and - lines in the hilt, so it shares LED2 + LED3.
 //   5. Control box green light, on LED5
 //   6. Control box red light, on LED6
 //
@@ -28,7 +30,8 @@ const unsigned int maxLedsPerStrip = 144;
 #define ENABLE_MOTION
 #define ENABLE_WS2811
 #define ENABLE_SD
-// The main blade and the connector pixels share the LED2/LED3 power pins.
+// The main blade, the connector pixels and the crystal share the LED2/LED3
+// power pins.
 #define SHARED_POWER_PINS
 // FSC-BT909 Bluetooth on the RX/TX pads.
 #define ENABLE_SERIAL
@@ -77,7 +80,7 @@ BladeConfig blades[] = {
     WS281XBladePtr<130, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     SubBladeWithStride(0, 15, 2, WS281XBladePtr<16, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >()),
     SubBladeWithStride(1, 15, 2, NULL),
-    WS281XBladePtr<4, blade3Pin, Color8::GRB, PowerPINS<bladePowerPin1> >(),
+    WS281XBladePtr<4, blade3Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     SimpleBladePtr<CH2LED, NoLED, NoLED, NoLED, bladePowerPin5, -1, -1, -1>(),
     SimpleBladePtr<CH1LED, NoLED, NoLED, NoLED, bladePowerPin6, -1, -1, -1>(),
     CONFIGARRAY(presets) },
