@@ -59,6 +59,15 @@ Not from this order:
 - **Obi-Wan:** the Roman Elite Inception hilt (static and vented pommels, blade plug) and its Saberbay blade.
 - **Not on either list:** the mini black 3-pin slide switch. It's low-current only and must never go in a blade's power line.
 
+## Install guides for this hilt
+
+- [Jawa's Depot: MoM + Crystal Chamber chassis](https://www.youtube.com/watch?v=wYZYZO8c3IY): the chassis designer's own video. The [product page](https://jawasdepot.com/products/mom-chassis-with-crystal-chamber) has build photos and the parts list.
+- [Smugglers Outpost: 7Chambers MoM of All Heroes, Proffie Pixel Install](https://www.youtube.com/watch?v=TDhTdW2LZpU)
+- [Ronin Sabers: 7even Chambers MoM Gen 2 Neopixel Install](https://www.youtube.com/watch?v=9AR8ZAMefGs)
+- [BRrogers: FX reveal board assembly](https://www.therpf.com/forums/threads/fx-reveal-board-assembly-for-fx-mom-cave-hero.339167) (helper board and reveal board, RPF)
+
+Layout, from the designer's photos, starting at the pommel: pommel → body with the control box (the removable core with board, battery and speaker goes in here) → crystal chamber → black grip → copper section → emitter with the NPXL connector. The blade wires (+, −, Data1, Data2) run up from the rotary connector past the crystal chamber to the NPXL. The NPXL's 16 LEDs light the blade plug at the emitter. The crystal is lit by the mini strip, or by the crystal chamber's own LEDs if it came with some.
+
 ## Configurator settings
 
 | Configurator field | Setting |
@@ -229,6 +238,7 @@ Once the checks are done, LED1 and LED2 go into the config as two plain LEDs on 
 - **Helper board:** the four checks above, and whether Veracity's v4.1 is the chassis designer's V2.
 - **Kill switch for the MoM:** the one High Amp Kill Switch in the order is counted for the Obi-Wan. The MoM's switch sits on the helper board, between its BATT+ and BRD+ (check 2 should show the U$2 pads there). Because blade + comes straight from the battery, this switch only carries the board's own current, about 1 A at most. Check the mini black slide switch's rating, or ask the kit maker which switch U$2 is meant for.
 - **4-pin connector part:** the designer's spec is a 4-pin **SMT** spring-loaded connector, 2.5 × 10–11 mm, with uncompressed pins no taller than 4 mm (the chassis takes 3 or 4 mm). The Treedix strip doesn't fit that: it's through-hole, and its 7.5 mm pins are nearly twice the maximum. Measure the 4-pin SMT connector you already had. If it's about 2.5 × 10–11 mm with pins no taller than 4 mm, it's the right part after all, used springs-out with no flipped strip or target. If not, look for one to that spec, for example on Mouser as the designer suggests.
+- **Crystal chamber wiring:** the crystal sits above the chassis and every rotary contact is in use, so its wires have to cross some other way. The designer's notes point to the control box: his maintenance note says the crystal LEDs are reached by unsoldering the helper board, and 4-pin pin 2 can be an "extra data line". Check in his video where the crystal's three wires connect and what's on pin 2. If pin 2 carries the crystal data, move Data3 there; BATT+ then uses pin 1 alone, which the designer says should pass a 1.5 A load test.
 - **Kill-switch battery feed:** confirm where the helper's BATT+ gets battery + on the hilt side (most likely the rotary's + line).
 - **Second rotary connector set:** not on either saber's list. It's the Obi-Wan's if its chassis comes apart, otherwise a spare.
 
