@@ -161,15 +161,22 @@ SDVDD is a 3.3 V supply the Proffieboard can switch off in low-power mode, which
 
 From Shtok's [NPXL V4 manual](https://drive.google.com/file/d/1S0gRH6mnw8OvC6XNEBnWZGeY1ES1nhG6/view), the hilt-side board has these pads:
 
-| NPXL pad | Wire to |
-| --- | --- |
-| **+** (positive pads) | BATT+ |
-| **−** (negative pads) | LED2 + LED3 |
-| **D1** | Data1 (blade) |
-| **D2** | Data2 (the 16 on-board LEDs) |
-| **BD** | Not used. Blade detect is off (see below) |
+Where each pad is on the back (the side printed **HILT**), from the manual's page 6 diagram:
+
+| NPXL pad | Where it is | Wire to |
+| --- | --- | --- |
+| **D1** | The big round pad dead centre, with "D1" printed below it | Data1 (blade): white |
+| **D2** | The small round pad on the left edge, printed "D2", between R2 above and R1 below | Data2 (the 16 on-board LEDs): yellow |
+| **−** | The gold pads around the centre, with "−" printed either side of "HILT" | LED2 + LED3: thick black |
+| **+** | The outer pads: the big square ones at top and bottom and the round outer ones printed "+" | Battery +: thick red |
+| **BD** | The inner pad at lower right, printed "BD" | Not used. Blade detect is off (see below). Keep solder from bridging it to the − pads |
+| **J** | Small jumper pads near the bottom | Leave open. It's only bridged for the manual's Option 3 |
+
+The manual's wire sizes for + and −: one 22 AWG, two 24 AWG or three 26 AWG wires each, soldered to any of that polarity's pads. Data wires can be 28–30 AWG.
 
 This is the manual's **Option 4**: blade and connector LEDs on separate data wires, which is also what the configurator draws. **Option 4 needs resistor R1 removed.** R1 is the tiny resistor next to D2, labeled R1 in the diagram. If R1 is still fitted, D1 and D2 are tied together through it, and two data outputs end up fighting each other. Leave R2 in place.
+
+The manual's own Proffieboard example for Option 4 matches this config: blade on Data1 and the connector's 16 LEDs on Data2, both on `PowerPINS<bladePowerPin2, bladePowerPin3>`, with `SHARED_POWER_PINS`. The only difference is that this config splits the 16 LEDs into two interleaved halves, as the configurator does. Both work.
 
 ## Shtok rotary connector (Rotary NeoPixel & 2 Button set)
 
