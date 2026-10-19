@@ -66,7 +66,7 @@ Not from this order:
 - [Ronin Sabers: 7even Chambers MoM Gen 2 Neopixel Install](https://www.youtube.com/watch?v=9AR8ZAMefGs)
 - [BRrogers: FX reveal board assembly](https://www.therpf.com/forums/threads/fx-reveal-board-assembly-for-fx-mom-cave-hero.339167) (helper board and reveal board, RPF)
 
-Layout, from the designer's photos, starting at the pommel: pommel → body with the control box (the removable core with board, battery and speaker goes in here) → crystal chamber → black grip → copper section → emitter with the NPXL connector. The crystal chamber is in the grenade section. The blade goes in past the thin neck to the NPXL at the far end, which sits in a holder made of a copper ring and a black ring. The blade wires (+, −, Data1, Data2) run up from the rotary connector past the crystal chamber to the NPXL. The NPXL's 16 LEDs light the blade plug at that end. The crystal chamber holds a second NPXL V4, used only as a light: its 16 LEDs light the chamber, and nothing plugs into it.
+Layout, from the designer's photos, starting at the pommel: pommel → body with the control box (the removable core with board, battery and speaker goes in here) → crystal chamber → black grip → copper section → emitter with the NPXL connector. The crystal chamber is in the grenade section. The blade goes in past the thin neck to the NPXL at the far end, which sits in a holder made of a copper ring and a black ring. The blade wires (+, −, Data1, Data2) run up from the rotary connector past the crystal chamber to the NPXL. The NPXL's 16 LEDs light the blade plug at that end. The crystal chamber holds a second NPXL V4 at its top, pointing up, used only as a light: its 16 LEDs light the chamber, and nothing plugs into it.
 
 The chassis comes all the way out, so every wire from the Proffieboard ends at the chassis end: on the rotary ring board, the 4-pin connector, the battery contacts, the speaker or the Bluetooth board. The rotary connector is the pass-through that carries the blade's wires on into the hilt.
 
@@ -236,7 +236,7 @@ The config already drives LED1 and LED2 as two plain LEDs on LED5 and LED6 (blad
 None of the install videos show this wiring, so it's worked out from the parts' pinouts and the chassis designer's notes. The hilt side has three groups of wires:
 
 - **Up past the crystal chamber and through the neck to the NPXL: 4 wires.** Blade + and − (thick), Data and ID (thin), from the rotary pin board. Nothing else goes above the crystal chamber.
-- **At the crystal chamber: 3 wires, to the second NPXL.** + and − tapped off the blade + and − wires as they pass, and data from 4-pin pin 2 to its D2 pad.
+- **At the crystal chamber: 3 wires, to the second NPXL** (at the top of the chamber, pointing up). + and − tapped off the blade + and − wires as they pass, and data from 4-pin pin 2 to its D2 pad.
 - **At the helper board in the control box:** the buttons (B1, B2 and GND from the rotary pin board), battery + for the kill switch (a tap off blade +) and the 4-pin contacts.
 
 ![Hilt-side wiring](out/mom/hilt-wiring.png)
