@@ -255,6 +255,10 @@ None of the install videos show this wiring, so it's worked out from the parts' 
 
 ![Hilt-side wiring](out/mom/hilt-wiring.png)
 
+Rotary A's pin board (CHC_M), pad by pad, on the photo of the real board:
+
+![CHC_M pads](out/mom/chcm-pads.png)
+
 | From | To | Wire | Colour |
 | --- | --- | --- | --- |
 | Rotary A pin board **+** | NPXL #2 **+** | Thick | Red |
