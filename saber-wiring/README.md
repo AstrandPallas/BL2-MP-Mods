@@ -40,7 +40,7 @@ The Saber Armory order covers both sabers.
 | Keeppower 21700 5000 mAh | | 1 | |
 | Spring Battery Contacts Set | ✓ | | |
 | Battery Contacts Set (Keystone) | | ✓ | |
-| NPXL V4 hilt side, short pins, assembled ×3 (17.5 mm) | 1 | 2 | |
+| NPXL V4 hilt side, short pins, assembled ×3 (17.5 mm) | 1 | 1 | 1 spare |
 | NPXL V3/V4 hilt-side holder 1" | ✓ | | |
 | NPXL blade-side LED board (the round "BLADE" board with 5 LEDs) | | ✓ | Spare if the Obi-Wan's blade arrives with its board installed |
 | 330 Ω 0603 SMD resistor ×2 | 1 | 1 | |
