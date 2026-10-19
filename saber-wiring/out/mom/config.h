@@ -90,7 +90,7 @@ BladeConfig blades[] = {
  { 0, WS281XBladePtr<130, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     SubBladeWithStride(0, 15, 2, WS281XBladePtr<16, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >()),
     SubBladeWithStride(1, 15, 2, NULL),
-    WS281XBladePtr<4, blade3Pin, Color8::GRB, PowerPINS<bladePowerPin1> >()
+    WS281XBladePtr<16, blade3Pin, Color8::GRB, PowerPINS<bladePowerPin1> >()
   , CONFIGARRAY(presets) },
 };
 #endif

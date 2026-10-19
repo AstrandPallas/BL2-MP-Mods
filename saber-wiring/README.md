@@ -9,7 +9,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | Part | What it does in this build |
 | --- | --- |
 | MoM hilt | The hilt |
-| BRrogers crystal chamber | Lit by 2–4 LEDs cut from the WS2812 mini strip |
+| BRrogers crystal chamber | Lit by a second NPXL V4, used only as a light: its 16 LEDs, with nothing plugged into it |
 | MoM FX helper board (Veracity calls it v4.1) | Sits in the control box behind the green reveal board. Carries the two buttons (side-push switches pressed by the box buttons) and two plain LEDs. See "MoM FX helper board" below |
 | Proffieboard V3.9 + SD card | Sound board. Yours is made by Tritium Sabers and printed "PB V3.9"; Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) lists Tritium as a V3.9 maker. The diagram photo is a V3.7, and the configurator covers the whole V3 family (`proffieboard_v3_config.h`) |
 | FSC-BT909 Bluetooth module (KR Sabers carrier board) | Bluetooth: 4 thin wires to SDVDD, GND, TX and RX. See "Bluetooth board" below |
@@ -19,8 +19,8 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | 2 A charger | External, shared with the Obi-Wan. There's no charge port in this build |
 | Shtok Rotary NeoPixel & 2 Button PCB connector set (1 set) | Joins the removable chassis to the hilt. Carries power, blade data, connector-LED data and both buttons |
 | Shtok NPXL V4 hilt-side connector + 1" holder | Where the blade plugs in. Has 16 LEDs of its own |
-| 330 Ω 0603 resistor (surface-mount chip marked "331", on a paper strip; 0603 is 1.6 × 0.8 mm) | In series on the **crystal chamber** data wire, at the crystal end. Tin both ends, solder the wire from 4-pin pin 2 to one end and the crystal's DIN to the other, then cover it with heat shrink |
-| WS2812 mini strip (cut 2–4 LEDs off) | Crystal chamber light |
+| 330 Ω 0603 resistor (surface-mount chip marked "331", on a paper strip; 0603 is 1.6 × 0.8 mm) | Not needed now: the crystal chamber's NPXL has its own 330 Ω (R2) on D2. Keep it as a spare |
+| WS2812 mini strip | Not needed now that an NPXL lights the crystal chamber. Handy as test LEDs on the bench |
 | 4-pin SMT spring-loaded connector | In the chassis end, beside the rotary ring board. The designer's spec: SMT, 2.5 × 10–11 mm, uncompressed pins no taller than 4 mm. Carries the kill-switch return and the two control-box lights (see "MoM FX helper board") |
 | Saberbay 1" thin-walled 36" neopixel blade | Main blade, 130 LEDs (Saberbay's formula: 36 ÷ 40 × 144 ≈ 130) |
 | 1" aluminum hero NeoPixel blade plug + 4× 2 mm magnets | Goes in the blade holder when the blade is out. Saberbay's NeoPixel plugs come with their own blade-side LED board; that's the ring of gold contacts on top of yours. Lit by that board and the NPXL's 16 LEDs |
@@ -40,11 +40,11 @@ The Saber Armory order covers both sabers.
 | Keeppower 21700 5000 mAh | | 1 | |
 | Spring Battery Contacts Set | ✓ | | |
 | Battery Contacts Set (Keystone) | | ✓ | |
-| NPXL V4 hilt side, short pins, assembled ×3 (17.5 mm) | 1 | 2 | |
+| NPXL V4 hilt side, short pins, assembled ×3 (17.5 mm) | 2: blade end and crystal chamber | 1 | |
 | NPXL V3/V4 hilt-side holder 1" | ✓ | | |
 | NPXL blade-side LED board (the round "BLADE" board with 5 LEDs) | | ✓ | Spare if the Obi-Wan's blade arrives with its board installed |
-| 330 Ω 0603 SMD resistor ×2 | 1 | 1 | |
-| WS2812 2020 mini strip, 10 LEDs | 2–4 LEDs | | The rest |
+| 330 Ω 0603 SMD resistor ×2 | | 1 | 1 spare |
+| WS2812 2020 mini strip, 10 LEDs | | | Spare |
 | KR 128x32 OLED, white | | ✓ | |
 | High Amp Kill Switch (silver C&K slide switch, marked 3A 120VAC) | See "Still to confirm" | ✓ | |
 | Battery and Speaker PCB Connector Set (20.00 mm per the listing) | | ✓ | |
@@ -66,7 +66,7 @@ Not from this order:
 - [Ronin Sabers: 7even Chambers MoM Gen 2 Neopixel Install](https://www.youtube.com/watch?v=9AR8ZAMefGs)
 - [BRrogers: FX reveal board assembly](https://www.therpf.com/forums/threads/fx-reveal-board-assembly-for-fx-mom-cave-hero.339167) (helper board and reveal board, RPF)
 
-Layout, from the designer's photos, starting at the pommel: pommel → body with the control box (the removable core with board, battery and speaker goes in here) → crystal chamber → black grip → copper section → emitter with the NPXL connector. The crystal chamber is in the grenade section. The blade goes in past the thin neck to the NPXL at the far end, which sits in a holder made of a copper ring and a black ring. The blade wires (+, −, Data1, Data2) run up from the rotary connector past the crystal chamber to the NPXL. The NPXL's 16 LEDs light the blade plug at that end. The crystal is lit by the mini strip.
+Layout, from the designer's photos, starting at the pommel: pommel → body with the control box (the removable core with board, battery and speaker goes in here) → crystal chamber → black grip → copper section → emitter with the NPXL connector. The crystal chamber is in the grenade section. The blade goes in past the thin neck to the NPXL at the far end, which sits in a holder made of a copper ring and a black ring. The blade wires (+, −, Data1, Data2) run up from the rotary connector past the crystal chamber to the NPXL. The NPXL's 16 LEDs light the blade plug at that end. The crystal chamber holds a second NPXL V4, used only as a light: its 16 LEDs light the chamber, and nothing plugs into it.
 
 The chassis comes all the way out, so every wire from the Proffieboard ends at the chassis end: on the rotary ring board, the 4-pin connector, the battery contacts, the speaker or the Bluetooth board. The rotary connector is the pass-through that carries the blade's wires on into the hilt.
 
@@ -81,7 +81,7 @@ The chassis comes all the way out, so every wire from the Proffieboard ends at t
 | Blade 2 | None |
 | Bluetooth | FSC-BT909 |
 | Kill switch | off |
-| Blade 3 | Neopixel crystal chamber, 4 LEDs |
+| Blade 3 | Neopixel crystal chamber, 16 LEDs |
 | IR receiver, Reverse orientation | off |
 
 "Illuminated PCB" is the configurator's option for a lit pogo connector like the NPXL V4. The board it draws has the same + / − / D1 / D2 / BD pads.
@@ -105,8 +105,8 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 | **GND** | Thin | BT909 **GND** | |
 | **Data1** | Thin | Rotary **Data** → NPXL **D1** (blade) | Data1 has a 470 Ω resistor built in, so no extra resistor |
 | **Data2** | Thin | Rotary **ID** → NPXL **D2** (connector's 16 LEDs) | The NPXL has its own 330 Ω (R2) on D2 |
-| **Data3** | Thin | 4-pin connector **pin 2** → (hilt side) **330 Ω resistor** → crystal **DIN** | Data2–4 have no built-in resistor, so the 330 Ω goes in at the crystal end. If you already put it on the chassis side of this wire, leave it there and don't add a second |
-| **LED1** | None | Spare, not used | If you already soldered a wire here, tape its end and tuck it away. The crystal's − now comes from the blade − line in the hilt |
+| **Data3** | Thin | 4-pin connector **pin 2** → (hilt side) crystal-chamber NPXL **D2** | Data3 has no built-in resistor, but the NPXL's R2 on D2 is one, so nothing extra |
+| **LED1** | None | Spare, not used | If you already soldered a wire here, tape its end and tuck it away. The crystal-chamber NPXL's − comes from the blade − line in the hilt |
 | **BT1** | Thin | Rotary **B1** → helper **SW1+** (power) | |
 | **BT2** | Thin | Rotary **B2** → helper **SW2+** (aux) | |
 | **RX** | Thin | BT909 **TX** | TX and RX cross over |
@@ -117,7 +117,7 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 
 One + wire doesn't go on the Proffieboard at all: **blade +** (thick) is soldered at the **battery's + contact** and runs to rotary **+** → NPXL **+**. Shtok's rotary diagram feeds the blade + straight from the battery the same way.
 
-In the hilt, two things tap that blade + wire: the kill switch's battery feed (helper **BATT+**) and the crystal's **+**. The crystal's **−** taps the blade − wire the same way. See [Hilt side: step by step](#hilt-side-step-by-step).
+In the hilt, two things tap that blade + wire: the kill switch's battery feed (helper **BATT+**) and the crystal-chamber NPXL's **+**. Its **−** taps the blade − wire the same way. See [Hilt side: step by step](#hilt-side-step-by-step).
 
 Keep blade + on the battery side, before the kill switch. Small slide switches like the ones in this order are rated around 3 A or less, and the blade can draw more than that. Wired this way, the switch only carries the board's own current. The blade still goes dark when the switch is off: blade − runs through the board's LED2/LED3 switches, and Hubbe's V3 page notes those have pull-down resistors that turn them off when the board has no power.
 
@@ -140,8 +140,6 @@ Tips for long wires you'll trim later:
 - Use red and black for the thick + and − wires.
 - Give each thin wire a different colour and write down which colour is on which pad. Once the wires are trimmed and bundled, that list is the only way to tell them apart.
 - Tin the pads and the wire ends before you join them.
-
-On the crystal strip, use the end whose arrows point away from the wire (DIN), and connect the strip's 5V/+, DIN and GND/− pads.
 
 ## Bluetooth board (KR Sabers BT909 module PCB)
 
@@ -168,6 +166,8 @@ From Shtok's [NPXL V4 manual](https://drive.google.com/file/d/1S0gRH6mnw8OvC6XNE
 | **D1** | Data1 (blade) |
 | **D2** | Data2 (the 16 on-board LEDs) |
 | **BD** | Not used. Blade detect is off (see below) |
+
+The MoM has two of these: one at the blade end, wired as below, and one in the crystal chamber used only as a light (see [Hilt side](#hilt-side-step-by-step)).
 
 This is the manual's **Option 4**: blade and connector LEDs on separate data wires, which is also what the configurator draws. **Option 4 needs resistor R1 removed.** R1 is the tiny resistor next to D2, labeled R1 in the diagram. If R1 is still fitted, D1 and D2 are tied together through it, and two data outputs end up fighting each other. Leave R2 in place.
 
@@ -227,7 +227,7 @@ Checks, using a multimeter in continuity (beep) mode with nothing connected:
    - If it beeps, they're joined, probably through F1 as a fuse, and the kill switch is somewhere else in the hilt.
    - If it doesn't beep, see whether BATT+ and BRD+ each beep to one of the three big **U$2** pads. If they do, U$2 is probably where the 3-pin slide switch (kill switch) goes.
 3. **LEDs:** **LED1−** should beep to a pad of the white part marked LED1. **LED2−** should do the same with LED2.
-4. **Data:** find out where **DATA1** and **DATA2** go. Test each one against the three **U$2** pads, the other parts on the board, and the spot where 4-pin pin 2 lands. If one is joined to pin 2's contact, that's the crystal's data path: wire the crystal's DIN (through the 330 Ω) to that pad. Otherwise leave both empty.
+4. **Data:** find out where **DATA1** and **DATA2** go. Test each one against the three **U$2** pads, the other parts on the board, and the spot where 4-pin pin 2 lands. If one is joined to pin 2's contact, that's the crystal's data path: wire the crystal-chamber NPXL's D2 to that pad. Otherwise leave both empty.
 
 The config already drives LED1 and LED2 as two plain LEDs on LED5 and LED6 (blades 5 and 6).
 
@@ -236,7 +236,7 @@ The config already drives LED1 and LED2 as two plain LEDs on LED5 and LED6 (blad
 None of the install videos show this wiring, so it's worked out from the parts' pinouts and the chassis designer's notes. The hilt side has three groups of wires:
 
 - **Up past the crystal chamber and through the neck to the NPXL: 4 wires.** Blade + and − (thick), Data and ID (thin), from the rotary pin board. Nothing else goes above the crystal chamber.
-- **At the crystal chamber: 3 wires.** + and − tapped off the blade + and − wires as they pass, and data from 4-pin pin 2.
+- **At the crystal chamber: 3 wires, to the second NPXL.** + and − tapped off the blade + and − wires as they pass, and data from 4-pin pin 2 to its D2 pad.
 - **At the helper board in the control box:** the buttons (B1, B2 and GND from the rotary pin board), battery + for the kill switch (a tap off blade +) and the 4-pin contacts.
 
 ![Hilt-side wiring](out/mom/hilt-wiring.png)
@@ -251,9 +251,9 @@ None of the install videos show this wiring, so it's worked out from the parts' 
 | Rotary pin board **B2** | Helper **SW2+** | Thin | Blue |
 | Rotary pin board **GND** | Helper **GND** | Thin | Black |
 | Tap on blade + | Helper **BATT+** (kill switch in) | Thin will do; thick if it fits | Red |
-| Tap on blade + | Crystal **+ / 5V** | Thin | Red |
-| Tap on blade − | Crystal **− / GND** | Thin | Black |
-| 4-pin **pin 2** contact | **330 Ω** → crystal **DIN** | Thin | White |
+| Tap on blade + | Crystal NPXL **+** | Thin | Red |
+| Tap on blade − | Crystal NPXL **−** | Thin | Black |
+| 4-pin **pin 2** contact | Crystal NPXL **D2** | Thin | White |
 | 4-pin **pin 1** contact | Helper **BRD+** (kill switch out) | Thin will do; thick if it fits | Red |
 | 4-pin **pin 3** contact | Helper **LED1−** | Thin | Green |
 | 4-pin **pin 4** contact | Helper **LED2−** | Thin | Yellow |
@@ -265,17 +265,17 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 3. **Blade wires.** Cut the four wires (+, −, Data, ID) to run from the rotary pin board to the NPXL with a little slack. Before soldering the thick ones, slide on heat shrink for the taps: two pieces on the red (crystal + and kill switch), one on the black (crystal −). Then solder: + → +, − → −, Data → D1, ID → D2.
 4. **Buttons.** Rotary pin board B1 → SW1+, B2 → SW2+, GND → GND. Short thin wires.
 5. **Taps.** Where a tap goes, score round the thick wire's insulation twice about 5 mm apart, slit between the cuts and peel that piece off. Wrap the thin wire's tinned end once round the bare strands, solder, then slide the heat shrink over and shrink it.
-   - Blade + → crystal + (thin red) and blade − → crystal − (thin black), where the wires pass the crystal chamber.
+   - Blade + → crystal NPXL + (thin red) and blade − → crystal NPXL − (thin black), where the wires pass the crystal chamber.
    - Blade + → helper BATT+ (red), near the control box. If the rotary pin board's + pad has room, you can instead lay this wire alongside the thick one on that pad.
-   - The crystal's − goes on the blade − wire, not the helper's GND. The board switches blade − off with the blade, so the crystal goes fully dark. On GND, its four LEDs would draw a few mA all the time, even with the kill switch off.
-6. **Crystal data.** Run the white wire from the 4-pin pin 2 contact (or the DATA pad it lands on) to the crystal. Stop about 1 cm short of DIN, solder the 330 Ω in line there, add a short stub to DIN and heat-shrink over the resistor. Use the strip's DIN end, where the arrows point away from the wire.
+   - The crystal's − goes on the blade − wire, not the helper's GND. The board switches blade − off with the blade, so the crystal goes fully dark. On GND, its 16 LEDs would draw around 10 mA all the time, even with the kill switch off.
+6. **Crystal chamber NPXL.** Remove its **R1** too, so the data doesn't also reach its spring pin, and leave its D1 and BD pads empty. Run the white wire from the 4-pin pin 2 contact (or the DATA pad it lands on) to its **D2** pad. No 330 Ω is needed: its R2 already is one. Its spring pins carry + and − with nothing plugged in, so make sure nothing metal can touch them.
 7. **4-pin contacts to the helper**, unless step 1 showed they're already joined: pin 1 → BRD+, pin 3 → LED1−, pin 4 → LED2−.
 8. **Multimeter checks, battery out.**
-   - Should beep: rotary pin board + ↔ NPXL +, − ↔ −, Data ↔ D1, ID ↔ D2. Crystal + ↔ blade +, crystal − ↔ blade −.
+   - Should beep: rotary pin board + ↔ NPXL +, − ↔ −, Data ↔ D1, ID ↔ D2. Crystal NPXL + ↔ blade +, crystal NPXL − ↔ blade −.
    - Must not beep: blade + ↔ blade −, and helper BATT+ ↔ helper GND.
    - Kill switch off: helper BATT+ ↔ BRD+ silent. On: it beeps.
 9. **First power-up.** Kill switch off, battery in, chassis in, then switch on: you should hear the boot sound. Ignite. The blade, the NPXL's LEDs, the crystal and both arrow lights should come on.
-   - Crystal dark: check it's wired at the DIN end, check the 330 Ω joints, and check the LED count in the config.
+   - Crystal dark: check the white wire is on the crystal NPXL's D2, not D1, and that its R1 is off.
    - Arrow colours swapped: swap `bladePowerPin5` and `bladePowerPin6` in the config.
    - **Pin 1 check:** run it for a few minutes at full volume with some swings and clashes. The 4-pin should be no more than slightly warm, and the board shouldn't restart on loud clashes. If it does either, lower `VOLUME`, or put pin 2 back on BATT+ and give the crystal data another route.
 
@@ -295,7 +295,7 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 | --- | --- | --- |
 | 1 | Main blade, 130 pixels | Data1, LED2 + LED3 |
 | 2–3 | NPXL V4 connector's 16 pixels, as two interleaved halves (how the configurator handles an Illuminated PCB) | Data2, LED2 + LED3 |
-| 4 | Crystal chamber, 4 pixels | Data3 via 4-pin pin 2 and a 330 Ω; LED2 + LED3 (its − taps the blade − wire) |
+| 4 | Crystal chamber NPXL, 16 pixels | Data3 via 4-pin pin 2 to its D2; LED2 + LED3 (its − taps the blade − wire) |
 | 5 | Control box green light | LED5 |
 | 6 | Control box red light | LED6 |
 
@@ -307,7 +307,6 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 | battery level | `TeensySF` (free) | Blade shows the battery charge |
 
 Before flashing:
-- Change the `4` in the crystal line (`WS281XBladePtr<4, blade3Pin, ...>`) to the number of LEDs you actually cut.
 - `VOLUME 1000` is moderate. Hubbe's default V3 config uses 2200, so raise it if the speaker is too quiet.
 - `CLASH_THRESHOLD_G 1.0` is the configurator's default. If swings set off clashes, raise it to 2–3.
 
