@@ -1,4 +1,4 @@
-# MoM saber - Proffieboard V3.9, NPXL V4 lit connector, 130 LED blade, 16 LED crystal chamber, 2 buttons, BT909
+# MoM saber - Proffieboard V3.9, NPXL V4 lit connector, 130 LED blade, 4 LED crystal chamber, 2 buttons, BT909
 
 Generated from https://fredrik.hubbe.net/lightsaber/v6/configurator.html
 
@@ -17,7 +17,7 @@ Form settings:
 - `ble`: `bt909`
 - `kill_switch`: `false`
 - `blade3`: `ws2811`
-- `blade3_ws2811_leds`: `16`
+- `blade3_ws2811_leds`: `4`
 - `blade3_ws2811_rgbw`: `false`
 - `button3`: `none`
 - `ir`: `false`
