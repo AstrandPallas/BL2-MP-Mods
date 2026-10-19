@@ -16,7 +16,7 @@
 //      turn out to be in the chain), the first RING_LEDS pixels on Data1
 //   3. NPXL #2 ring at the top of the crystal chamber, first half (Data2)
 //   4. NPXL #2 ring, second half (same strip, interleaved)
-//   5. Crystal chamber: 4 pixels on Data3, carried to the hilt on 4-pin
+//   5. Crystal chamber: 10 pixels on Data3, carried to the hilt on 4-pin
 //      connector pin 2 (330 ohm at the crystal end). Its + and - are tapped
 //      from the blade's + and - lines in the hilt, so it shares LED2 + LED3.
 //   6. Control box green light, on LED5
@@ -96,7 +96,7 @@ BladeConfig blades[] = {
     SubBlade(0, RING_LEDS - 1, NULL),
     SubBladeWithStride(0, 15, 2, WS281XBladePtr<16, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >()),
     SubBladeWithStride(1, 15, 2, NULL),
-    WS281XBladePtr<4, blade3Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<10, blade3Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     SimpleBladePtr<CH2LED, NoLED, NoLED, NoLED, bladePowerPin5, -1, -1, -1>(),
     SimpleBladePtr<CH1LED, NoLED, NoLED, NoLED, bladePowerPin6, -1, -1, -1>(),
     CONFIGARRAY(presets) },

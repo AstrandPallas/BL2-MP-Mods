@@ -9,7 +9,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | Part | What it does in this build |
 | --- | --- |
 | MoM hilt | The hilt |
-| BRrogers crystal chamber | Lit by 2–4 LEDs cut from the WS2812 mini strip |
+| BRrogers crystal chamber | Lit by the 10-LED WS2812 mini strip |
 | MoM FX helper board (Veracity calls it v4.1) | Sits in the control box behind the green reveal board. Carries the two buttons (side-push switches pressed by the box buttons) and two plain LEDs. See "MoM FX helper board" below |
 | Proffieboard V3.9 + SD card | Sound board. Yours is made by Tritium Sabers and printed "PB V3.9"; Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) lists Tritium as a V3.9 maker. The diagram photo is a V3.7, and the configurator covers the whole V3 family (`proffieboard_v3_config.h`) |
 | FSC-BT909 Bluetooth module (KR Sabers carrier board) | Bluetooth: 4 thin wires to SDVDD, GND, TX and RX. See "Bluetooth board" below |
@@ -21,7 +21,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | Shtok NPXL V4 hilt-side connectors (2) + 1" holder | **#1**, in the 1" holder at the blade end, is where the blade plugs in. **#2** sits at the top of the crystal chamber, pins up. Each has 16 LEDs of its own |
 | Round **BLADE** board (Shtok blade-side NPXL board, 5 LEDs) + the designer's copper and black pixel holder | Sits at the bottom of the tip section, flat contacts down onto NPXL #2's pins. Joins the crystal chamber to the tip: +, − and one data line |
 | 330 Ω 0603 resistor (surface-mount chip marked "331", on a paper strip; 0603 is 1.6 × 0.8 mm) | In series on the **crystal chamber** data wire, at the crystal end. Tin both ends, solder the wire from 4-pin pin 2 to one end and the crystal's DIN to the other, then cover it with heat shrink |
-| WS2812 mini strip (cut 2–4 LEDs off) | Crystal chamber light |
+| WS2812 mini strip, 10 LEDs | Crystal chamber light. Use all 10, or cut it to fit and set the count in the config |
 | 4-pin SMT spring-loaded connector | In the chassis end, beside the rotary ring board. The designer's spec: SMT, 2.5 × 10–11 mm, uncompressed pins no taller than 4 mm. Carries the kill-switch return and the two control-box lights (see "MoM FX helper board") |
 | Saberbay 1" thin-walled 36" neopixel blade | Main blade, 130 LEDs (Saberbay's formula: 36 ÷ 40 × 144 ≈ 130) |
 | 1" aluminum hero NeoPixel blade plug + 4× 2 mm magnets | Goes in the blade holder when the blade is out. Saberbay's NeoPixel plugs come with their own blade-side LED board; that's the ring of gold contacts on top of yours. Lit by that board and the NPXL's 16 LEDs |
@@ -45,7 +45,7 @@ The Saber Armory order covers both sabers.
 | NPXL V3/V4 hilt-side holder 1" | ✓ | Not needed: its emitter takes the NPXL directly | |
 | NPXL blade-side LED board (the round "BLADE" board with 5 LEDs) | ✓ chamber-to-tip joint | | Only if the Obi-Wan's blade has its own contact board; check its end |
 | 330 Ω 0603 SMD resistor ×2 | 1 | 1 | |
-| WS2812 2020 mini strip, 10 LEDs | 2–4 LEDs | | The rest |
+| WS2812 2020 mini strip, 10 LEDs | ✓ | | |
 | KR 128x32 OLED, white | | ✓ | |
 | High Amp Kill Switch (silver C&K slide switch, marked 3A 120VAC) | See "Still to confirm" | ✓ | |
 | Battery and Speaker PCB Connector Set (20.00 mm per the listing) | | ✓ | |
@@ -82,7 +82,7 @@ The chassis comes all the way out, so every wire from the Proffieboard ends at t
 | Blade 2 | None |
 | Bluetooth | FSC-BT909 |
 | Kill switch | off |
-| Blade 3 | Neopixel crystal chamber, 4 LEDs |
+| Blade 3 | Neopixel crystal chamber, 10 LEDs |
 | IR receiver, Reverse orientation | off |
 
 "Illuminated PCB" is the configurator's option for a lit pogo connector like the NPXL V4. The board it draws has the same + / − / D1 / D2 / BD pads.
@@ -287,7 +287,7 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 5. **Taps.** Where a tap goes, score round the thick wire's insulation twice about 5 mm apart, slit between the cuts and peel that piece off. Wrap the thin wire's tinned end once round the bare strands, solder, then slide the heat shrink over and shrink it.
    - Blade + → crystal + (thin red) and blade − → crystal − (thin black), where the wires pass the crystal chamber.
    - Blade + → helper BATT+ (red), near the control box. If rotary A's + pad has room, you can instead lay this wire alongside the thick one on that pad.
-   - The crystal's − goes on the blade − wire, not the helper's GND. The board switches blade − off with the blade, so the crystal goes fully dark. On GND, its four LEDs would draw a few mA all the time, even with the kill switch off.
+   - The crystal's − goes on the blade − wire, not the helper's GND. The board switches blade − off with the blade, so the crystal goes fully dark. On GND, its LEDs would draw a few mA all the time, even with the kill switch off.
 6. **Crystal data.** Run the white wire from the 4-pin pin 2 contact (or the DATA pad it lands on) to the crystal. Stop about 1 cm short of DIN, solder the 330 Ω in line there, add a short stub to DIN and heat-shrink over the resistor. Use the strip's DIN end, where the arrows point away from the wire.
 7. **4-pin contacts to the helper**, unless step 1 showed they're already joined: pin 1 → BRD+, pin 3 → LED1−, pin 4 → LED2−.
 8. **Multimeter checks, battery out.**
@@ -319,7 +319,7 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 | 1 | Main blade, 130 pixels, after the ring on the same strip | Data1, LED2 + LED3 |
 | 2 | NPXL #1's ring at the blade end: the first `RING_LEDS` pixels on Data1 (16, or 21 if the BLADE board's 5 LEDs are in the chain) | Data1, LED2 + LED3 |
 | 3–4 | NPXL #2's ring at the top of the crystal chamber, as two interleaved halves (how the configurator handles an Illuminated PCB) | Data2, LED2 + LED3 |
-| 5 | Crystal chamber, 4 pixels | Data3 via 4-pin pin 2 and a 330 Ω; LED2 + LED3 (its − taps the blade − wire) |
+| 5 | Crystal chamber, 10 pixels | Data3 via 4-pin pin 2 and a 330 Ω; LED2 + LED3 (its − taps the blade − wire) |
 | 6 | Control box green light | LED5 |
 | 7 | Control box red light | LED6 |
 
@@ -333,7 +333,7 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 | battery level | `TeensySF` (free) | Blade shows the battery charge |
 
 Before flashing:
-- Change the `4` in the crystal line (`WS281XBladePtr<4, blade3Pin, ...>`) to the number of LEDs you actually cut.
+- If you cut the crystal strip, change the `10` in the crystal line (`WS281XBladePtr<10, blade3Pin, ...>`) to the number of LEDs you kept.
 - `VOLUME 1000` is moderate. Hubbe's default V3 config uses 2200, so raise it if the speaker is too quiet.
 - `CLASH_THRESHOLD_G 1.0` is the configurator's default. If swings set off clashes, raise it to 2–3.
 
