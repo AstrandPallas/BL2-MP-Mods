@@ -9,9 +9,9 @@
 //   1. Main blade: 130 pixels on Data1, negative on LED2 + LED3
 //   2. NPXL V4 connector pixels, first half (Data2)
 //   3. NPXL V4 connector pixels, second half (same strip, interleaved)
-//   4. Optional crystal strip: 4 pixels on Data3, carried to the hilt on
-//      4-pin connector pin 2 (330 ohm at the crystal end). Its + and - come
-//      from the NPXL's spare pads, so it shares LED2 + LED3.
+//   4. Crystal chamber: 4 pixels on Data3, carried to the hilt on 4-pin
+//      connector pin 2 (330 ohm at the crystal end). Its + and - are tapped
+//      from the blade's + and - lines in the hilt, so it shares LED2 + LED3.
 //   5. Control box green light, on LED5
 //   6. Control box red light, on LED6
 //
