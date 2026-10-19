@@ -41,7 +41,7 @@ The Saber Armory order covers both sabers.
 | Spring Battery Contacts Set | ✓ | | |
 | Battery Contacts Set (Keystone) | | ✓ | |
 | NPXL V4 hilt side, short pins, assembled ×3 (17.5 mm) | 1 | 1 | 1 spare |
-| NPXL V3/V4 hilt-side holder 1" | ✓ | | |
+| NPXL V3/V4 hilt-side holder 1" | ✓ | Not needed: its emitter takes the NPXL directly | |
 | NPXL blade-side LED board (the round "BLADE" board with 5 LEDs) | | ✓ | Spare if the Obi-Wan's blade arrives with its board installed |
 | 330 Ω 0603 SMD resistor ×2 | 1 | 1 | |
 | WS2812 2020 mini strip, 10 LEDs | 2–4 LEDs | | The rest |
