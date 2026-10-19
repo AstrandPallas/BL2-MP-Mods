@@ -263,7 +263,7 @@ None of the install videos show this wiring, so it's worked out from the parts' 
 | Rotary A pin board **ID** | NPXL #2 **D2** | Thin | Yellow |
 | BLADE board **+** (the four outer pads marked +) | NPXL #1 **+** | Thick | Red |
 | BLADE board **−** (the pads marked −) | NPXL #1 **−** | Thick | Black |
-| BLADE board **D** (top centre, above its resistor) | NPXL #1 **D2** | Thin | Yellow |
+| BLADE board **D** (top centre, above its resistor) | NPXL #1 **D2** | Thin | White (it carries Data1, the blade's data) |
 | Rotary A pin board **B1** | Helper **SW1+** | Thin | Green |
 | Rotary A pin board **B2** | Helper **SW2+** | Thin | Blue |
 | Rotary A pin board **GND** | Helper **GND** | Thin | Black |
