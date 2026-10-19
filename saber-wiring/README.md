@@ -301,8 +301,10 @@ Before flashing:
 
 ### SD card
 
-1. Copy the contents of Hubbe's free [ProffieOS SD card download](https://fredrik.hubbe.net/lightsaber/sound/) to the root of the SD card. It contains the `SmthJedi`, `SmthGrey` and `TeensySF` fonts and the `tracks` folder the presets use.
-2. Put your Luke font on the card in a folder named **`LukeROTJ`**, or change `"LukeROTJ"` in the config to match the folder's name.
+1. Format the card as FAT32.
+2. Download Hubbe's free [ProffieOS SD card zip](https://fredrik.hubbe.net/lightsaber/sound/) (about 207 MB). Copy everything *inside* its `ProffieOS_SD_Card` folder to the root of the card: `RgueCmdr`, `SmthFuzz`, `SmthGrey`, `SmthJedi`, `TeensySF`, `TthCrstl`, `tracks` and `readme.txt`.
+3. Until you have a Luke font, copy `SmthJedi` and name the copy **`LukeROTJ`**, so preset 1 works straight away.
+4. When the Luke font arrives, empty `LukeROTJ` and put the font's files directly in it (hum, swing and clash `.wav` files and its `.ini` files, not a nested folder). No reflash needed.
 
 ### Luke sound fonts
 
