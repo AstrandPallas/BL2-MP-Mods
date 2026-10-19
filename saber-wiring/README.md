@@ -285,7 +285,9 @@ Before flashing:
    - **Board:** Proffieboard V3
    - **USB Type:** Serial + WebUSB + Mass Storage
    - **DOSFS:** SDIO (High Speed). ProffieOS refuses to compile otherwise.
-6. Plug the board in with a data USB cable, pick its port and click **Upload**.
+6. Tape every loose wire end and leave the battery disconnected. Then plug the board in with a data USB cable, pick its port and click **Upload**.
+7. If the upload fails or no port appears, hold the board's **BOOT** button, press and release **RESET**, let go of BOOT, and click Upload again. That's from Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/).
+8. Open the Serial Monitor and type `help`. A list of commands means it's running. Without the SD card it will complain about missing fonts, which is expected.
 
 ### SD card
 
