@@ -173,7 +173,7 @@ This is the manual's **Option 4**: blade and connector LEDs on separate data wir
 
 ## Shtok rotary connector (Rotary NeoPixel & 2 Button set)
 
-This is a pass-through. Every ring on the female board (CHC_F) touches the same-named pins on the male board (CHC_M), in any rotation. Shtok's [Proffieboard diagram](https://cdn.shopify.com/s/files/1/0262/5368/8868/products/image_90123a68-bfdd-4d91-a77c-03377dd314f2.png) puts the pin board (CHC_M) on the Proffieboard side. The Jawa's Depot MoM build video has it the other way round: the **ring board (CHC_F)** on the end of the chassis, next to the 4-pin pogo, and the **pin board (CHC_M)** in the hilt. Electrically it's the same either way, so follow the chassis.
+This is a pass-through. Every ring on the female board (CHC_F) touches the same-named pins on the male board (CHC_M), in any rotation. Shtok's [Proffieboard diagram](https://cdn.shopify.com/s/files/1/0262/5368/8868/products/image_90123a68-bfdd-4d91-a77c-03377dd314f2.png) puts the pin board (CHC_M) on the Proffieboard side. The Jawa's Depot MoM build video has it the other way round: the **ring board (CHC_F)** on the end of the chassis, next to the 4-pin pogo, and the **pin board (CHC_M)** in the hilt. Electrically it's the same either way, so follow the chassis. A frame from the same video shows the ring board on the chassis tip, with the 4-pin connector's four contacts just above it. The pin board sits in the crystal chamber, and its spring pins press on the ring board when the chassis is in.
 
 | Pad (same on both boards) | Chassis side: from the Proffieboard | Hilt side: to |
 | --- | --- | --- |
