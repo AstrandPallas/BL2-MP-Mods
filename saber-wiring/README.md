@@ -195,6 +195,8 @@ This is a pass-through. Every ring on the female board (CHC_F) touches the same-
 | **B2** | BT2 | Helper **SW2+** (aux button) |
 | **GND** | GND (pad 5) | Helper **GND** (shared leg of both buttons) |
 
+On both boards, **ID** is the upper of the two small square pads next to the "ID" label. The lower square is joined to GND (it's for an optional ID resistor), so never let solder bridge the two: that would short Data2 to ground.
+
 This set has one data contact plus an **ID** contact. The blade and the connector LEDs need two data wires, so this wiring carries the connector-LED data (D2) on ID. That leaves no contact for the NPXL's blade-detect (BD) pin, which is why Blade Detect is off.
 
 In the MoM the buttons do use B1, B2 and GND, because the 4-pin pogo is taken up by the kill switch and the control-box lights. On the hilt side, three short wires run from the pin board (CHC_M) to the helper board.
