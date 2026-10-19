@@ -205,14 +205,14 @@ The joint between the crystal chamber and the tip section uses NPXL #2 and the B
 
 Veracity calls this board **v4.1**. The "V1" and "V2" on the chassis page are the chassis designer's labels, and I found nothing that connects them to Veracity's version numbers. The designer describes V2 as having plain LEDs, which matches this board, but that doesn't confirm v4.1 is V2.
 
-The board sits in the control box behind the green reveal board. The control-box buttons press its two side-mounted switches, per BRrogers's [assembly thread](https://www.therpf.com/forums/threads/fx-reveal-board-assembly-for-fx-mom-cave-hero.339167). I couldn't find a wiring guide for it, so this mapping comes from its printed labels. Run the checks below before soldering.
+The board sits in the control box behind the green reveal board, in a brass housing that screws together with the crystal chamber. It carries the kill switch (a slide switch), F1, the two plain LEDs with R1 and R2, and the two side-push switches. Its wire pads are plated through-holes: LED1− and LED2− and SW1+ on one row, and BATT+, SW2+, BRD+, DATA1, DATA2 and GND on the other. Nothing touches it directly. All its wires come in through a gap from CHC_M and the 4-pin. The control-box buttons press its two side-mounted switches, per BRrogers's [assembly thread](https://www.therpf.com/forums/threads/fx-reveal-board-assembly-for-fx-mom-cave-hero.339167). I couldn't find a wiring guide for it, so this mapping comes from its printed labels. Run the checks below before soldering.
 
 | Helper board pad | Proffieboard pad | How sure |
 | --- | --- | --- |
 | **SW1+** | BT1, through rotary B1 | Likely. Signal side of switch SW1 |
 | **SW2+** | BT2, through rotary B2 | Likely |
 | **GND** | GND (pad 5), through rotary GND | Likely. Common for both switches |
-| **BATT+** | Battery +: a tap off the blade + wire in the hilt | The kill switch's input. It's not on the designer's 4-pin pinout, so it has to come from the hilt side |
+| **BATT+** | Battery +: thin red from CHC_M's second + pad | The kill switch's input. It's not on the designer's 4-pin pinout, so it comes from the hilt side |
 | **BRD+** | BATT+ pad, through 4-pin **pin 1** | Designer: "Pin1 = Kill Switch-to-Board Batt+". Run check 2 |
 | **LED1−** | LED5, through 4-pin **pin 3** | Designer: "Pin3 = LEDx arrow neg-". Run check 3 |
 | **LED2−** | LED6, through 4-pin **pin 4** | Designer: "Pin4 = LEDy arrow neg-" |
@@ -306,7 +306,7 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 - **Brass-cup part:** confirm it faces up toward the blade, so NPXL #1 and the 1" holder go there.
 - **BLADE board:** confirm the Obi-Wan's blade has its own contact board, so this one is free for the MoM.
 - **Helper board:** the four checks above, and whether Veracity's v4.1 is the chassis designer's V2.
-- **Kill switch for the MoM:** the one High Amp Kill Switch in the order is counted for the Obi-Wan. The MoM's switch sits on the helper board, between its BATT+ and BRD+ (check 2 should show the U$2 pads there). Because blade + comes straight from the battery, this switch only carries the board's own current, about 1 A at most. Check the mini black slide switch's rating, or ask the kit maker which switch U$2 is meant for.
+- **Kill switch for the MoM:** already on the helper board: the 3-leg slide switch at its left end, between BATT+ and BRD+. Because blade + comes straight from the battery, it only carries the board's own current, about 1 A at most. Check: switch on, BATT+ ↔ BRD+ beeps; switch off, silent.
 - **4-pin connector part:** the designer's spec is a 4-pin **SMT** spring-loaded connector, 2.5 × 10–11 mm, with uncompressed pins no taller than 4 mm (the chassis takes 3 or 4 mm). The Treedix strip doesn't fit that: it's through-hole, and its 7.5 mm pins are nearly twice the maximum. Measure the 4-pin SMT connector you already had. If it's about 2.5 × 10–11 mm with pins no taller than 4 mm, it's the right part after all, used springs-out with no flipped strip or target. If not, look for one to that spec, for example on Mouser as the designer suggests.
 
 ## ProffieOS config to flash: `proffieos/mom_config.h`
