@@ -185,6 +185,10 @@ The manual's own Proffieboard example for Option 4 matches this config: blade on
 
 This is a pass-through. Every ring on the female board (CHC_F) touches the same-named pins on the male board (CHC_M), in any rotation. Shtok's [Proffieboard diagram](https://cdn.shopify.com/s/files/1/0262/5368/8868/products/image_90123a68-bfdd-4d91-a77c-03377dd314f2.png) puts the pin board (CHC_M) on the Proffieboard side. The Jawa's Depot MoM build video has it the other way round: the **ring board (CHC_F)** on the end of the chassis, next to the 4-pin pogo, and the **pin board (CHC_M)** in the hilt. Electrically it's the same either way, so follow the chassis. A frame from the same video shows the ring board on the chassis tip, with the 4-pin connector's four contacts just above it. The pin board sits in the crystal chamber, and its spring pins press on the ring board when the chassis is in.
 
+Ring board A (CHC_F), pad by pad, on a photo of the real board:
+
+![CHC_F pads](out/mom/chcf-pads.png)
+
 | Pad (same on both boards) | Chassis side: from the Proffieboard | Hilt side: to |
 | --- | --- | --- |
 | **+** | Battery + contact (thick) | NPXL + |
