@@ -12,7 +12,7 @@ The configurator doesn't know about the Shtok rotary connector or the MoM helper
 | BRrogers crystal chamber | Lit by the 10-LED WS2812 mini strip |
 | MoM FX helper board (Veracity calls it v4.1) | Sits in the control box behind the green reveal board. Carries the two buttons (side-push switches pressed by the box buttons) and two plain LEDs. See "MoM FX helper board" below |
 | Proffieboard V3.9 + SD card | Sound board. Yours is made by Tritium Sabers and printed "PB V3.9"; Hubbe's [V3 page](https://fredrik.hubbe.net/lightsaber/v6/) lists Tritium as a V3.9 maker. The diagram photo is a V3.7, and the configurator covers the whole V3 family (`proffieboard_v3_config.h`) |
-| FSC-BT909 Bluetooth module (KR Sabers carrier board) | Bluetooth: 4 thin wires to SDVDD, GND, TX and RX. See "Bluetooth board" below |
+| FSC-BT909 Bluetooth module (KR Sabers carrier board) | **Not fitted in the MoM:** there's no room for it in the hilt. RX, TX, SDVDD and the second GND pad stay empty. "Bluetooth board" below is kept for reference |
 | 28 mm 4 Ω 3 W bass speaker | SPKR+ / SPKR− |
 | 18650 3120 mAh protected cell (1 of the 2) | Battery. Protected cells are a few mm longer than unprotected ones, so check it fits between the spring contacts |
 | Spring battery contacts | Hold the battery; it comes out to charge |
@@ -34,7 +34,7 @@ The Saber Armory order covers both sabers.
 | Ordered | MoM | Obi-Wan | Shared or spare |
 | --- | --- | --- | --- |
 | Proffieboard v3.9 ×2 | 1 | 1 | |
-| FSC-BT909 Bluetooth PCB Unit ×2 | 1 | 1 | |
+| FSC-BT909 Bluetooth PCB Unit ×2 | None: no room in the hilt | 1 | 1 spare |
 | 28 mm 4 Ω 3 W speaker ×2 | 1 | 1 | |
 | Rotary NeoPixel & 2 Button connector set ×2 | 1: chassis to crystal chamber | | 1 spare |
 | Keeppower 18650 3120 mAh dual pack | 1 cell | | 1 spare cell |
@@ -69,7 +69,7 @@ Not from this order:
 
 Layout, from the designer's photos, starting at the pommel: pommel → body with the control box (the removable core with board, battery and speaker goes in here) → crystal chamber → black grip → copper section → emitter with the NPXL connector. The crystal chamber is in the grenade section. The blade goes in past the thin neck to a brass cup about 1" across. The Shtok 1" holder is the same size and replaces that cup; it holds the NPXL, pins up, where the blade's end lands. (On its own, the 17.5 mm NPXL rattles around in the brass cup.) The blade wires (+, −, Data1, Data2) run up from the rotary connector past the crystal chamber to the NPXL. The NPXL's 16 LEDs light the blade plug at that end. The crystal is lit by the mini strip.
 
-The chassis comes all the way out, so every wire from the Proffieboard ends at the chassis end: on the rotary ring board, the 4-pin connector, the battery contacts, the speaker or the Bluetooth board. The rotary connector is the pass-through that carries the blade's wires on into the hilt.
+The chassis comes all the way out, so every wire from the Proffieboard ends at the chassis end: on the rotary ring board, the 4-pin connector, the battery contacts or the speaker. The rotary connector is the pass-through that carries the blade's wires on into the hilt.
 
 ## Configurator settings
 
@@ -80,7 +80,7 @@ The chassis comes all the way out, so every wire from the Proffieboard ends at t
 | Display | None |
 | Charge Port | **off** |
 | Blade 2 | None |
-| Bluetooth | FSC-BT909 |
+| Bluetooth | FSC-BT909 (the module was later left out for lack of room, so ignore the Bluetooth wires on the configurator diagram) |
 | Kill switch | off |
 | Blade 3 | Neopixel crystal chamber, 10 LEDs |
 | IR receiver, Reverse orientation | off |
@@ -103,16 +103,13 @@ Use **thick** wire only where the blade's current flows: the battery in and out,
 | **BATT−** | **Thick** | Battery − | Every LED's current comes back through here |
 | **LED2 + LED3** | **Thick** | Blade −: rotary **−** → NPXL **−** | The two pads are next to each other. Strip enough wire to lay across both and solder them together |
 | **GND** | Thin | Shared leg of both buttons: rotary **GND** → helper **GND** | GND and BATT− are joined on the board, so any GND or BATT− pad works |
-| **GND** | Thin | BT909 **GND** | |
 | **Data1** | Thin | Rotary **Data** → NPXL **D1** (blade) | Data1 has a 470 Ω resistor built in, so no extra resistor |
 | **Data2** | Thin | Rotary **ID** → NPXL **D2** (connector's 16 LEDs) | The NPXL has its own 330 Ω (R2) on D2 |
 | **Data3** | None | Spare, not used | If you already soldered a wire here, tape its end. The crystal strip takes its data from Data2 in the crystal chamber |
 | **LED1** | None | Spare, not used | If you already soldered a wire here, tape its end and tuck it away. The crystal's − now comes from the blade − line in the hilt |
 | **BT1** | Thin | Rotary **B1** → helper **SW1+** (power) | |
 | **BT2** | Thin | Rotary **B2** → helper **SW2+** (aux) | |
-| **RX** | Thin | BT909 **TX** | TX and RX cross over |
-| **TX** | Thin | BT909 **RX** | |
-| **SDVDD** | Thin | BT909 **+ / VCC** | Switched 3.3 V |
+| **RX**, **TX**, **SDVDD**, second **GND** | None | Not used: no Bluetooth in the MoM | If you already soldered wires here, tape their ends |
 | **SPKR+ / SPKR−** | Thin | Speaker | Under 1 A even at full volume (3 W into 4 Ω) |
 | **LED5 / LED6** | Thin | 4-pin connector **pin 3 / pin 4** → helper **LED1− / LED2−** | The control box's two arrow lights. The designer's pinout calls them LEDx and LEDy |
 
@@ -131,7 +128,6 @@ Colour plan for black, red, white, green, yellow and blue. Each group of wires t
 | Rotary connector (chassis side) | blade + **red thick** (from the battery + contact), LED2+LED3 **black thick**, GND (pad 5) black thin, Data1 white, Data2 yellow, BT1 green, BT2 blue |
 | 4-pin connector (chassis end) | BATT+ red thick (pins 1 and 2), LED5 green (pin 3), LED6 yellow (pin 4) |
 | Battery contacts | + : blade + **red thick**. − : BATT− **black thick** |
-| Bluetooth board | SDVDD red, GND black, TX yellow, RX blue |
 | Speaker | SPKR+ and SPKR− both green. Polarity doesn't matter with one speaker |
 
 Tips for long wires you'll trim later:
@@ -145,6 +141,8 @@ Tips for long wires you'll trim later:
 On the crystal strip, use the end whose arrows point away from the wire (DIN), and connect the strip's 5V/+, DIN and GND/− pads.
 
 ## Bluetooth board (KR Sabers BT909 module PCB)
+
+Not fitted in the MoM: there was no room for it in the hilt. This section is kept for reference, for example for the Obi-Wan.
 
 The BT909 is mounted on a KR Sabers carrier board, sold by The Saber Armory as the [FSC-BT909 Bluetooth PCB Unit](https://thesaberarmory.com/products/shtokcustomworx-fsc-bt909-bluetooth-pcb-unit). The pads are labeled on the back. The listing's [wiring image](https://cdn.shopify.com/s/files/1/0262/5368/8868/products/SCW-BT909-3.jpg) marks RX "to TX" and TX "to RX", so the data wires cross over, the same as the configurator draws.
 
@@ -321,7 +319,7 @@ Each wire has the same colour as the chassis-side wire behind its contact, so a 
 
 ## ProffieOS config to flash: `proffieos/mom_config.h`
 
-[`proffieos/mom_config.h`](proffieos/mom_config.h) is the config to flash. It starts from the configurator's output (`out/mom/config.h`) and adds the control box's two lights, Bluetooth and save-state. It compiles cleanly against **ProffieOS 8.10** for Proffieboard V3: the firmware uses about 190 KB of 512 KB of flash and about 31 KB of RAM.
+[`proffieos/mom_config.h`](proffieos/mom_config.h) is the config to flash. It starts from the configurator's output (`out/mom/config.h`) and adds the control box's two lights and save-state. With no Bluetooth module, its serial port (`ENABLE_SERIAL`) is left off. It compiles cleanly against **ProffieOS 8.10** for Proffieboard V3: the firmware uses about 185 KB of 512 KB of flash and about 31 KB of RAM.
 
 | Blade (in preset order) | Hardware | Pins |
 | --- | --- | --- |
@@ -353,14 +351,13 @@ Before flashing:
 4. **Bench test on USB:**
    - Connect the speaker: you should hear the boot sound.
    - Briefly touch the BT1 (green) wire to a GND (black) wire. That's a power-button press, so you should hear ignition.
-   - Connect the Bluetooth board and look for it on your phone.
 5. **Bench test on the battery:**
    - Board power comes back through the kill switch in the hilt, so until the hilt is wired, temporarily connect the red BATT+ wire (pad 4) to the battery's + contact. That stands in for the switch.
    - Test the real NPXL and blade. Remove R1 from the NPXL first. Then clip or tack the NPXL's **+** to the battery's +, **−** to pad 9's thick black wire, **D1** to Data1 (white) and **D2** to Data2 (yellow), and plug the blade in.
    - No NPXL handy? Use 6–8 leftover mini-strip LEDs as a test blade: + to battery +, − to pad 9's thick wire, DIN to Data1.
    - Always connect the battery the right way round. Neopixels can fry if it's reversed.
 6. **Then the connectors and far ends:**
-   - Chassis side: the rotary ring board, the 4-pin connector, the battery contacts, the speaker and the Bluetooth board.
+   - Chassis side: the rotary ring board, the 4-pin connector, the battery contacts and the speaker.
    - Hilt side: follow [Hilt side: step by step](#hilt-side-step-by-step). It covers R1, the helper board, the crystal and the kill switch.
 
 ### Flashing

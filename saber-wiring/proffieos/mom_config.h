@@ -2,7 +2,8 @@
 //
 // Started from Fredrik Hubbe's Proffieboard V3 configurator output
 // (Illuminated PCB blade, 2 buttons, FSC-BT909), then extended with the
-// control box's two lights. Wiring is in ../README.md,
+// control box's two lights. The Bluetooth module didn't fit in the hilt, so
+// its serial port is left off. Wiring is in ../README.md,
 // ../out/mom/proffie-pads.png and ../out/mom/hilt-wiring.png.
 //
 // Data1 runs through the joint at the top of the crystal chamber (NPXL #2's
@@ -45,8 +46,6 @@ const unsigned int maxLedsPerStrip = RING_LEDS + 130;
 // The blade, both connector rings and the crystal strip share the LED2/LED3
 // power pins.
 #define SHARED_POWER_PINS
-// FSC-BT909 Bluetooth on the RX/TX pads.
-#define ENABLE_SERIAL
 // Remember the last preset, volume and colour change.
 #define SAVE_STATE
 #endif
