@@ -213,6 +213,10 @@ Veracity calls this board **v4.1**. The "V1" and "V2" on the chassis page are th
 
 The board sits in the control box behind the green reveal board, in a brass housing that screws together with the crystal chamber. It carries the kill switch (a slide switch), F1, the two plain LEDs with R1 and R2, and the two side-push switches. Its wire pads are plated through-holes: LED1− and LED2− and SW1+ on one row, and BATT+, SW2+, BRD+, DATA1, DATA2 and GND on the other. Nothing touches it directly. All its wires come in through a gap from CHC_M and the 4-pin. The control-box buttons press its two side-mounted switches, per BRrogers's [assembly thread](https://www.therpf.com/forums/threads/fx-reveal-board-assembly-for-fx-mom-cave-hero.339167). I couldn't find a wiring guide for it, so this mapping comes from its printed labels. Run the checks below before soldering.
 
+Pad by pad, on a photo of the real board:
+
+![Helper board pads](out/mom/helper-pads.png)
+
 | Helper board pad | Proffieboard pad | How sure |
 | --- | --- | --- |
 | **SW1+** | BT1, through rotary B1 | Likely. Signal side of switch SW1 |
